@@ -5,7 +5,7 @@ class MecDrive {
   // private:
   
   public:
-    void drive(double maxSpd);
+    void drive(double joyY, double joyX, double rotX, double maxSpd, double strafeCorrection);
 };
 
 #endif

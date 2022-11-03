@@ -9,14 +9,11 @@ using namespace vex;
 // Program Init
 
 // Program Parameters
-const double strafeCorrection = 1.1;
 
 // Program Variables/Objects
-Input Ct1;
 
-void MecDrive::drive(double maxSpd) {
-  Ct1.updateChannel();
-  double joyY = Ct1.getCh3(), joyX = Ct1.getCh4()*strafeCorrection, rotX = Ct1.getCh1();
+void MecDrive::drive(double joyY, double joyX, double rotX, double maxSpd, double strafeCorrection) {
+  joyX *= strafeCorrection;
   double ratioCorrection = std::max(std::abs(joyY) + std::abs(joyX) + std::abs(rotX), 100.0);
 
   double LFPow = (joyY + joyX + rotX) / ratioCorrection * maxSpd;

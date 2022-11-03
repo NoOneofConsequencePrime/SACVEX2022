@@ -4,10 +4,12 @@
 class Input {
   private:
     double Ch1, Ch2, Ch3, Ch4;
+    bool leftHighTrig, leftLowTrig;
   
   public:
-    void updateChannel();
+    void setChannels(double threshold), setButtons();
     double getCh1(), getCh2(), getCh3(), getCh4();
+    bool getLeftHighTrig(), getLeftLowTrig();
 };
 
 #endif
