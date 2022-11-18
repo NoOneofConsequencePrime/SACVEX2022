@@ -24,7 +24,7 @@ using namespace vex;
 competition Competition;
 
 // Parameters
-const double MecDriveStrafeCorrection = 1.1;
+const double MecDriveStrafeCorrection = 1.0;
 const double ControllerJoystickThreshold = 2;
 
 // Global Variables
@@ -59,15 +59,32 @@ void usercontrol(void) {
   while (1) {
     Ct1.setButtons();
     if (Ct1.getButtonA()) {
-      Motor1.spin(forward, 0, pct);
-      Motor2.spin(forward, 0, pct);
+      LF.spin(fwd, 0, pct);
+      LB.spin(fwd, 0, pct);
+      RF.spin(fwd, 0, pct);
+      RB.spin(fwd, 0, pct);
+      RB.stop();
+      RF.stop();
+      LB.stop();
+      LF.stop();
     } else if (Ct1.getButtonB()) {
-      Motor1.spin(forward, 50, pct);
-      Motor2.spin(forward, 50, pct);
-    } else if (Ct1.getButtonX()) {
-      Motor1.spin(forward, 100, pct);
-      Motor2.spin(forward, 100, pct);
+      LF.spin(fwd, 100, pct);
+      LB.spin(fwd, 27, pct);
+      RF.spin(fwd, 27, pct);
+      RB.spin(fwd, 100, pct);
     }
+
+    // if (Ct1.getButtonA()) {
+    //   Motor1.spin(forward, 0, pct);
+    //   Motor2.spin(forward, 0, pct);
+    // } else if (Ct1.getButtonB()) {
+    //   Motor1.spin(forward, 50, pct);
+    //   Motor2.spin(forward, 50, pct);
+    // } else if (Ct1.getButtonX()) {
+    //   Motor1.spin(forward, 100, pct);
+    //   Motor2.spin(forward, 100, pct);
+    // }
+
     // Ct1.setChannels(ControllerJoystickThreshold); Ct1.setButtons();
     // mecDrive.drive(Ct1.getCh3(), Ct1.getCh4(), Ct1.getCh1(), 100, MecDriveStrafeCorrection);
     // if (Ct1.getLeftHighTrig()) tmp.spinRoller(100);
