@@ -15,6 +15,10 @@ void Input::setChannels(double threshold) {
 void Input::setButtons() {
   leftHighTrig = Ct1.ButtonL1.pressing();
   leftLowTrig = Ct1.ButtonL2.pressing();
+  buttonA = Ct1.ButtonA.pressing();
+  buttonB = Ct1.ButtonB.pressing();
+  buttonX = Ct1.ButtonX.pressing();
+  buttonY = Ct1.ButtonY.pressing();
 }
 
 double Input::getCh1() {
@@ -34,4 +38,16 @@ bool Input::getLeftHighTrig() {
 }
 bool Input::getLeftLowTrig() {
   return leftLowTrig;
+}
+bool Input::getButtonA() {
+  return buttonA;
+}
+bool Input::getButtonB() {
+  return buttonB;
+}
+bool Input::getButtonX() {
+  return buttonX;
+}
+bool Input::getButtonY() {
+  return buttonX;
 }
