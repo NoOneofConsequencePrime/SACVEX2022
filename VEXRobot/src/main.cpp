@@ -12,6 +12,9 @@
 // [Name]               [Type]        [Port(s)]
 // Controller1          controller                    
 // FL                   motor         1               
+// FR                   motor         2               
+// BL                   motor         3               
+// BR                   motor         4               
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
@@ -66,15 +69,57 @@ void autonomous(void) {
 /*                                                                           */
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
+void fbControl(){
+  int y = Controller1.Axis3.position(pct);
+    if ((y > 10) || (y < 10)) {
+      FL.spin(forward, y, pct);
+      FR.spin(forward, y, pct);
+      BL.spin(forward, y, pct);
+      BR.spin(forward, y, pct);
+    } else {
+      FL.spin(forward, 0, pct);
+      FR.spin(forward, 0, pct);
+      BL.spin(forward, 0, pct);
+      BR.spin(forward, 0, pct);
+    }
+}
+
+void lrControl(){
+  int x = Controller1.Axis4.position(pct);
+    if ((x > 10) || (x < 10)) {
+      FL.spin(forward, x, pct);
+      FR.spin(forward, -x, pct);
+      BL.spin(forward, -x, pct);
+      BR.spin(forward, x, pct);
+    } else {
+      FL.spin(forward, 0, pct);
+      FR.spin(forward, 0, pct);
+      BL.spin(forward, 0, pct);
+      BR.spin(forward, 0, pct);
+    }
+}
+
+void lrTurn(){
+  int z = Controller1.Axis1.position(pct);
+    if ((z > 10) || (z < 10)){
+      FL.spin(forward, z, pct);
+      FR.spin(forward, -z, pct);
+      BL.spin(forward, z, pct);
+      BR.spin(forward, -z, pct);
+    } else {
+      FL.spin(forward, 0, pct);
+      FR.spin(forward, 0, pct);
+      BL.spin(forward, 0, pct);
+      BR.spin(forward, 0, pct);
+    }
+}
 
 void usercontrol(void) {
   // User control code here, inside the loop
   while (1) {
-    int x = Controller1.Axis4.position(pct);
-    if (Controller1.ButtonA.pressing()) {
-      FL.spin(forward, x, pct);
-    }
-
+    fbControl();
+    lrControl();
+    lrTurn();    
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
     // values based on feedback from the joysticks.
