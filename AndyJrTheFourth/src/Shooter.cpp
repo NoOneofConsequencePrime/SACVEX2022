@@ -13,5 +13,4 @@ using namespace vex;
 void Shooter::spinShooter(double maxSpd) {
   FlywheelR.spin(forward, maxSpd, pct);
   FlywheelL.spin(forward, maxSpd, pct);
-  Loader.spin(forward, maxSpd, pct);
 }

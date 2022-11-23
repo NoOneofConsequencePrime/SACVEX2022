@@ -9,6 +9,19 @@
 // Intake               motor         11              
 // FlywheelR            motor         12              
 // FlywheelL            motor         15              
+// LoaderM              motor         20              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// RB                   motor         18              
+// RF                   motor         19              
+// LB                   motor         16              
+// LF                   motor         17              
+// Intake               motor         11              
+// FlywheelR            motor         12              
+// FlywheelL            motor         15              
 // Loader               motor         20              
 // ---- END VEXCODE CONFIGURED DEVICES ----
 // ---- START VEXCODE CONFIGURED DEVICES ----
@@ -149,6 +162,7 @@
 #include "MecDrive.h"
 #include "Roller.h"
 #include "Shooter.h"
+#include "Loader.h"
 
 using namespace vex;
 
@@ -181,6 +195,7 @@ Input Ct1;
 MecDrive mecDrive;
 Roller roller;
 Shooter shooter;
+Loader loader;
 void usercontrol(void) {
   while (1) {
     Ct1.setChannels(ControllerJoystickThreshold); Ct1.setButtons();
@@ -188,9 +203,12 @@ void usercontrol(void) {
     if (Ct1.getLeftHighTrig()) roller.spinRoller(100);
     else if (Ct1.getLeftLowTrig()) roller.spinRoller(-100);
     else roller.spinRoller(0);
-    if (Ct1.getRightHighTrig()) shooter.spinShooter(100);
-    else if (Ct1.getRightLowTrig()) shooter.spinShooter(-100);
-    else shooter.spinShooter(0); 
+    if (Ct1.getRightHighTrig()) loader.spinLoader(100);
+    else if (Ct1.getRightLowTrig()) loader.spinLoader(-100);
+    else loader.spinLoader(0); 
+    if (Ct1.getA()) shooter.spinShooter(100);
+    else if (Ct1.getB()) shooter.spinShooter(0); 
+    else shooter.spinShooter(100);
     debug();
     wait(5, msec); 
   }

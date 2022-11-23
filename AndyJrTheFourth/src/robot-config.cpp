@@ -16,7 +16,7 @@ motor LF = motor(PORT17, ratio18_1, false);
 motor Intake = motor(PORT11, ratio18_1, false);
 motor FlywheelR = motor(PORT12, ratio18_1, false);
 motor FlywheelL = motor(PORT15, ratio18_1, true);
-motor Loader = motor(PORT20, ratio18_1, true);
+motor LoaderM = motor(PORT20, ratio18_1, true);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

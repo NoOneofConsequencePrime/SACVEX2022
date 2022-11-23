@@ -17,6 +17,8 @@ void Input::setButtons() {
   leftLowTrig = Ct1.ButtonL2.pressing();
   rightHighTrig = Ct1.ButtonR1.pressing();
   rightLowTrig = Ct1.ButtonR2.pressing();
+  A = Ct1.ButtonA.pressing();
+  B = Ct1.ButtonB.pressing();
 }
 
 double Input::getCh1() {
@@ -42,4 +44,10 @@ bool Input::getRightHighTrig() {
 }
 bool Input::getRightLowTrig() {
   return rightLowTrig;
+}
+bool Input::getA() {
+  return A;
+}
+bool Input::getB() {
+  return B;
 }
