@@ -17,7 +17,6 @@ motor Intake = motor(PORT13, ratio18_1, false);
 motor ShooterRight = motor(PORT20, ratio6_1, false);
 motor ShooterLeft = motor(PORT19, ratio6_1, true);
 motor Feeder = motor(PORT11, ratio18_1, true);
-encoder YEncoder = encoder(Brain.ThreeWirePort.A);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
