@@ -9,6 +9,9 @@ extern motor RF;
 extern motor LB;
 extern motor LF;
 extern motor Intake;
+extern motor FlywheelR;
+extern motor FlywheelL;
+extern motor Loader;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
