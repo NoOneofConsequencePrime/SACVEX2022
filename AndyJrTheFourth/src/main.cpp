@@ -2,6 +2,56 @@
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
 // Controller1          controller                    
+// RB                   motor         18              
+// RF                   motor         19              
+// LB                   motor         16              
+// LF                   motor         17              
+// Intake               motor         11              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// RB                   motor         18              
+// RF                   motor         19              
+// LB                   motor         16              
+// LF                   motor         17              
+// Intake               motor         6               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// RB                   motor         18              
+// RF                   motor         19              
+// LB                   motor         16              
+// LF                   motor         4               
+// Intake               motor         6               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// RB                   motor         18              
+// RF                   motor         19              
+// LB                   motor         3               
+// LF                   motor         4               
+// Intake               motor         6               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// RB                   motor         18              
+// RF                   motor         2               
+// LB                   motor         3               
+// LF                   motor         4               
+// Intake               motor         6               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
 // RB                   motor         1               
 // RF                   motor         2               
 // LB                   motor         3               
