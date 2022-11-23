@@ -9,8 +9,10 @@ extern motor RF;
 extern motor LB;
 extern motor LF;
 extern motor Intake;
-extern motor Motor1;
-extern motor Motor2;
+extern motor ShooterRight;
+extern motor ShooterLeft;
+extern motor Feeder;
+extern encoder YEncoder;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

@@ -9,13 +9,15 @@ brain  Brain;
 
 // VEXcode device constructors
 controller Controller1 = controller(primary);
-motor RB = motor(PORT1, ratio18_1, true);
-motor RF = motor(PORT2, ratio18_1, true);
-motor LB = motor(PORT3, ratio18_1, false);
-motor LF = motor(PORT4, ratio18_1, false);
-motor Intake = motor(PORT6, ratio18_1, false);
-motor Motor1 = motor(PORT9, ratio6_1, false);
-motor Motor2 = motor(PORT10, ratio6_1, true);
+motor RB = motor(PORT12, ratio18_1, true);
+motor RF = motor(PORT16, ratio18_1, true);
+motor LB = motor(PORT14, ratio18_1, false);
+motor LF = motor(PORT18, ratio18_1, false);
+motor Intake = motor(PORT13, ratio18_1, false);
+motor ShooterRight = motor(PORT20, ratio6_1, false);
+motor ShooterLeft = motor(PORT19, ratio6_1, true);
+motor Feeder = motor(PORT11, ratio18_1, true);
+encoder YEncoder = encoder(Brain.ThreeWirePort.A);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
