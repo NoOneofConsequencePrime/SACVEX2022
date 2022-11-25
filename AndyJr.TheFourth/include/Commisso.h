@@ -2,10 +2,11 @@
 #define COMMISSO_H
 
 class Commisso {
-  // private:
+  private:
+    bool RPMReached = 0;
   
   public:
-    void spinIntake(double maxSpd), spinFeeder(double maxSpd), spinShooter(double maxSpd);
+    void spinIntake(double maxSpd), spinFeeder(double maxSpd), spinShooter(double maxSpd, double targetUncertainty);
 };
 
 #endif

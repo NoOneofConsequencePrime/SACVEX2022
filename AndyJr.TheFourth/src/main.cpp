@@ -1,77 +1,3 @@
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RB                   motor         18              
-// RF                   motor         19              
-// LB                   motor         6               
-// LF                   motor         16              
-// Intake               motor         4               
-// ShooterRight         motor         14              
-// ShooterLeft          motor         15              
-// Feeder               motor         2               
-// Motor1               motor         9               
-// Motor2               motor         10              
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RB                   motor         18              
-// RF                   motor         19              
-// LB                   motor         6               
-// LF                   motor         16              
-// Intake               motor         4               
-// ShooterRight         motor         14              
-// ShooterLeft          motor         15              
-// Feeder               motor         2               
-// Motor1               motor         9               
-// Motor2               motor         10              
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RB                   motor         18              
-// RF                   motor         19              
-// LB                   motor         6               
-// LF                   motor         16              
-// Intake               motor         4               
-// ShooterRight         motor         14              
-// ShooterLeft          motor         15              
-// Feeder               motor         2               
-// Motor1               motor         9               
-// Motor2               motor         10              
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RB                   motor         18              
-// RF                   motor         19              
-// LB                   motor         6               
-// LF                   motor         16              
-// Intake               motor         4               
-// ShooterRight         motor         14              
-// ShooterLeft          motor         15              
-// Feeder               motor         2               
-// Motor1               motor         9               
-// Motor2               motor         10              
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RB                   motor         18              
-// RF                   motor         19              
-// LB                   motor         6               
-// LF                   motor         16              
-// Intake               motor         4               
-// ShooterRight         motor         14              
-// ShooterLeft          motor         15              
-// Feeder               motor         2               
-// Motor1               motor         9               
-// ---- END VEXCODE CONFIGURED DEVICES ----
 #include <vex.h>
 #include "Input.h"
 #include "MecDrive.h"
@@ -88,9 +14,11 @@ competition Competition;
 // Parameters
 const double MecDriveStrafeCorrection = 1.0;
 const double ControllerJoystickThreshold = 2;
-const double ShooterRPM = 420;
+const double FastShooterRPM = 380, SlowShooterRPM = 350;
+const double ShooterRPMUncertainty = 20;
 
 // Global Variables
+double shooterRPM = SlowShooterRPM;
 
 void debug() {
   // Brain.Screen.clearScreen();
@@ -120,18 +48,18 @@ void debug() {
   // print("LFTemp: ");
   // print(LF.temperature(pct));
 
-  // setCursor(1, 1);
-  // print("ShooterEff: ");
-  // print(ShooterRight.efficiency(pct));
-  // setCursor(2, 1);
-  // print("ShooterVelRPM: ");
-  // print(ShooterRight.velocity(rpm));
-  // setCursor(3, 1);
-  // print("ShooterVelPCT: ");
-  // print(ShooterRight.velocity(pct));
-  // setCursor(4, 1);
-  // print("ShooterTemp: ");
-  // print(ShooterRight.temperature(pct));
+  setCursor(1, 1);
+  print("ShooterEff: ");
+  print(ShooterRight.efficiency(pct));
+  setCursor(2, 1);
+  print("ShooterVelRPM: ");
+  print(ShooterRight.velocity(rpm));
+  setCursor(3, 1);
+  print("ShooterVelPCT: ");
+  print(ShooterRight.velocity(pct));
+  setCursor(4, 1);
+  print("ShooterTemp: ");
+  print(ShooterRight.temperature(pct));
 }
 
 void pre_auton(void) {
@@ -141,52 +69,46 @@ void pre_auton(void) {
 void autonomous(void) {
 }
 
-Input Ct1;
-MecDrive mecDrive;
-Commisso commisso;
 void usercontrol(void) {
+
+  // Init all objects
+  Input Ct1;
+  MecDrive mecDrive;
+  Commisso commisso;
+
   while (1) {
     // Get Input
     Ct1.setChannels(ControllerJoystickThreshold); Ct1.setButtons();
 
-    if (Ct1.getButtonA()) {
-      Motor1.spin(fwd, 600, rpm);
-      Motor2.spin(fwd, 600, rpm);
-    } else {
-      Motor1.spin(fwd, 0, rpm);
-      Motor2.spin(fwd, 0, rpm);
-    }
-
-    // // Mecanum Drive
-    // mecDrive.drive(Ct1.getCh3(), Ct1.getCh4(), Ct1.getCh1(), 100, MecDriveStrafeCorrection);
+    // Mecanum Drive
+    mecDrive.drive(Ct1.getCh3(), Ct1.getCh4(), Ct1.getCh1(), 100, MecDriveStrafeCorrection);
     
-    // // Robot Controls
-    // if (Ct1.getLeftHighTrig()) commisso.spinIntake(100);
-    // else if (Ct1.getLeftLowTrig()) commisso.spinIntake(-100);
-    // else commisso.spinIntake(0);
-    // if (Ct1.getRightLowTrig()) commisso.spinFeeder(100);
-    // else commisso.spinFeeder(0);
-    // if (Ct1.getRightHighTrig()) commisso.spinShooter(ShooterRPM);
-    // else if (Ct1.getButtonDown()) commisso.spinShooter(-50);
-    // else commisso.spinShooter(0);
+    // Robot Controls
+    if (Ct1.getLeftHighTrig()) commisso.spinIntake(100);
+    else if (Ct1.getLeftLowTrig()) commisso.spinIntake(-100);
+    else commisso.spinIntake(0);
+
+    if (Ct1.getRightLowTrig()) commisso.spinFeeder(100);
+    else commisso.spinFeeder(0);
+
+    if (Ct1.getButtonA()) shooterRPM = FastShooterRPM;
+    else if (Ct1.getButtonB()) shooterRPM = SlowShooterRPM;
+
+    if (Ct1.getRightHighTrig()) commisso.spinShooter(shooterRPM, ShooterRPMUncertainty);
+    else if (Ct1.getButtonDown()) commisso.spinShooter(-30, ShooterRPMUncertainty);
+    else commisso.spinShooter(0, ShooterRPMUncertainty);
 
     debug();
     wait(5, msec); 
   }
 }
 
-//
-// Main will set up the competition functions and callbacks.
-//
 int main() {
-  // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
 
-  // Run the pre-autonomous function.
   pre_auton();
 
-  // Prevent main from exiting with an infinite loop.
   while (true) {
     wait(100, msec);
   }
