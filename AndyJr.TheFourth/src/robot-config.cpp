@@ -17,6 +17,7 @@ motor Intake = motor(PORT21, ratio18_1, false);
 motor ShooterRight = motor(PORT15, ratio6_1, false);
 motor ShooterLeft = motor(PORT16, ratio6_1, true);
 motor Feeder = motor(PORT14, ratio18_1, true);
+inertial Gyro = inertial(PORT13);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

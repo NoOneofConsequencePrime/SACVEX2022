@@ -12,6 +12,7 @@ extern motor Intake;
 extern motor ShooterRight;
 extern motor ShooterLeft;
 extern motor Feeder;
+extern inertial Gyro;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

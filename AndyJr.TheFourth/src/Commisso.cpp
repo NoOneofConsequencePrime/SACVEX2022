@@ -11,13 +11,13 @@ using namespace vex;
 
 // Program Variables/Objects
 
-void Commisso::spinIntake(double maxSpd) {
-  Intake.spin(fwd, maxSpd, pct);
+void Commisso::spinIntake(double spd) {
+  Intake.spin(fwd, spd*100.0, pct);
 }
-void Commisso::spinFeeder(double maxSpd) {
-  if (RPMReached) Feeder.spin(fwd, maxSpd, pct);
+void Commisso::spinFeeder(double spd) {
+  if (RPMReached) Feeder.spin(fwd, spd*100.0, pct);
 }
-void Commisso::spinShooter(double spd, double targetUncertainty) {
+void Commisso::spinShooter(double spd, double targetUncertainty) {// rpm
   ShooterRight.spin(fwd, spd, rpm);
   ShooterLeft.spin(fwd, spd, rpm);
 

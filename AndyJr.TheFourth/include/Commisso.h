@@ -6,7 +6,7 @@ class Commisso {
     bool RPMReached = 0;
   
   public:
-    void spinIntake(double maxSpd), spinFeeder(double maxSpd), spinShooter(double maxSpd, double targetUncertainty);
+    void spinIntake(double spd), spinFeeder(double spd), spinShooter(double spd, double targetUncertainty);
 };
 
 #endif
