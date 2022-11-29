@@ -29,7 +29,7 @@ competition Competition;
 // Parameters
 const double MecDriveStrafeCorrection = 1.0;
 const double ControllerJoystickThreshold = 2;
-const double FastShooterRPM = 380, SlowShooterRPM = 350;
+const double FastShooterRPM = 350, SlowShooterRPM = 305;
 const double ShooterRPMUncertainty = 20;
 const double DistErrorMargin = 1;// cm
 const double DistKP = 0.35;
@@ -100,6 +100,24 @@ void pre_auton(void) {
 }
 
 void autonomous(void) {
+  for (int i = 1; i <= 5; i++) {
+    auton.moveFwdPID(100, 1.0, DistErrorMargin, DistKP, DirErrorMargin, DirKP, MoveDelay);
+    auton.turn(-90, 1.0, RotErrorMargin, RotKP, MoveDelay);
+  }
+
+  // mecDrive.driveFwd(1.0);
+  // commisso.spinIntake(1.0);
+  // wait(1.5, sec);
+  // auton.moveFwdPID(-10, 0.8, DistErrorMargin, DistKP, DirErrorMargin, DirKP, MoveDelay);
+  // commisso.spinIntake(-1.0);
+  // auton.turn(180, 1.0, RotErrorMargin, RotKP, MoveDelay);
+  // auton.moveFwdPID(40, 0.8, DistErrorMargin, DistKP, DirErrorMargin, DirKP, MoveDelay);
+  // auton.turn(-90, 1.0, RotErrorMargin, RotKP, MoveDelay);
+  // mecDrive.driveFwd(1.0);
+  // wait(1.5, sec);
+  // auton.moveFwdPID(-20, 0.8, DistErrorMargin, DistKP, DirErrorMargin, DirKP, MoveDelay);
+  // commisso.spinIntake(0.0);
+
   // mecDrive.driveFwd(1.0);
   // commisso.spinIntake(1.0);
   // wait(1.5, sec);
