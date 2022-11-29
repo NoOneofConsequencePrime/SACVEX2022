@@ -6,6 +6,7 @@ class MecDrive {
   
   public:
     void drive(double joyY, double joyX, double rotX, double maxSpd, double strafeCorrection);
+    void driveFwd(double spd);
 };
 
 #endif

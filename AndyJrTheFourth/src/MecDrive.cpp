@@ -21,8 +21,15 @@ void MecDrive::drive(double joyY, double joyX, double rotX, double maxSpd, doubl
   double RFPow = (joyY - joyX - rotX) / ratioCorrection * maxSpd;
   double RBPow = (joyY + joyX - rotX) / ratioCorrection * maxSpd;
 
-  LF.spin(forward, LFPow, pct);
-  LB.spin(forward, LBPow, pct);
-  RF.spin(forward, RFPow, pct);
-  RB.spin(forward, RBPow, pct);
+  LF.spin(fwd, LFPow, pct);
+  LB.spin(fwd, LBPow, pct);
+  RF.spin(fwd, RFPow, pct);
+  RB.spin(fwd, RBPow, pct);
+}
+
+void MecDrive::driveFwd(double spd) {
+  LF.spin(fwd, spd*100.0, pct);
+  LB.spin(fwd, spd*100.0, pct);
+  RF.spin(fwd, spd*100.0, pct);
+  RB.spin(fwd, spd*100.0, pct);
 }
