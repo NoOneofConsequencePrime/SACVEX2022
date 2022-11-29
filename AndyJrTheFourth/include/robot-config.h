@@ -9,9 +9,15 @@ extern motor RF;
 extern motor LB;
 extern motor LF;
 extern motor Intake;
+<<<<<<< HEAD:AndyJrTheFourth/include/robot-config.h
 extern motor FlywheelR;
 extern motor FlywheelL;
 extern motor LoaderM;
+=======
+extern motor ShooterRight;
+extern motor ShooterLeft;
+extern motor Feeder;
+>>>>>>> parent of a70b506 (Postcomp):AndyJr.TheFourth/include/robot-config.h
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
