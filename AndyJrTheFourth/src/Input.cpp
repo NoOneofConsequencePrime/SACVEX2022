@@ -17,14 +17,8 @@ void Input::setButtons() {
   leftLowTrig = Ct1.ButtonL2.pressing();
   rightHighTrig = Ct1.ButtonR1.pressing();
   rightLowTrig = Ct1.ButtonR2.pressing();
-  buttonA = Ct1.ButtonA.pressing();
-  buttonB = Ct1.ButtonB.pressing();
-  buttonX = Ct1.ButtonX.pressing();
-  buttonY = Ct1.ButtonY.pressing();
-  buttonUp = Ct1.ButtonUp.pressing();
-  buttonDown = Ct1.ButtonDown.pressing();
-  buttonLeft = Ct1.ButtonLeft.pressing();
-  buttonRight = Ct1.ButtonRight.pressing();
+  A = Ct1.ButtonA.pressing();
+  B = Ct1.ButtonB.pressing();
 }
 
 double Input::getCh1() {
@@ -51,27 +45,9 @@ bool Input::getRightHighTrig() {
 bool Input::getRightLowTrig() {
   return rightLowTrig;
 }
-bool Input::getButtonA() {
-  return buttonA;
+bool Input::getA() {
+  return A;
 }
-bool Input::getButtonB() {
-  return buttonB;
-}
-bool Input::getButtonX() {
-  return buttonX;
-}
-bool Input::getButtonY() {
-  return buttonX;
-}
-bool Input::getButtonUp() {
-  return buttonUp;
-}
-bool Input::getButtonDown() {
-  return buttonDown;
-}
-bool Input::getButtonLeft() {
-  return buttonLeft;
-}
-bool Input::getButtonRight() {
-  return buttonRight;
+bool Input::getB() {
+  return B;
 }

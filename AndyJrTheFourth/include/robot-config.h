@@ -9,10 +9,9 @@ extern motor RF;
 extern motor LB;
 extern motor LF;
 extern motor Intake;
-extern motor ShooterRight;
-extern motor ShooterLeft;
-extern motor Feeder;
-extern inertial Gyro;
+extern motor FlywheelR;
+extern motor FlywheelL;
+extern motor LoaderM;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
