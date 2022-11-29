@@ -4,7 +4,6 @@
 class Auton {
   private:
     double getAvgMotorError(double LFTarget, double LBTarget, double RFTarget, double RBTarget);
-    double getDiff(double a, double b);
     double getRotError(double initRot, double targetRot);
 
   public:

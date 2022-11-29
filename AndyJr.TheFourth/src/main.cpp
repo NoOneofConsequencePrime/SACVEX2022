@@ -1,17 +1,3 @@
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// RB                   motor         18              
-// RF                   motor         17              
-// LB                   motor         19              
-// LF                   motor         20              
-// Intake               motor         21              
-// ShooterRight         motor         15              
-// ShooterLeft          motor         16              
-// Feeder               motor         14              
-// Gyro                 inertial      13              
-// ---- END VEXCODE CONFIGURED DEVICES ----
 #include <vex.h>
 #include "Input.h"
 #include "MecDrive.h"
@@ -29,7 +15,7 @@ competition Competition;
 // Parameters
 const double MecDriveStrafeCorrection = 1.0;
 const double ControllerJoystickThreshold = 2;
-const double FastShooterRPM = 380, SlowShooterRPM = 350;
+const double FastShooterRPM = 350, SlowShooterRPM = 300;
 const double ShooterRPMUncertainty = 20;
 const double DistErrorMargin = 1;// cm
 const double DistKP = 0.35;

@@ -68,10 +68,6 @@ double Auton::getAvgMotorError(double LFTarget, double LBTarget, double RFTarget
   return (LFError+LBError+RFError+RBError)/4.0;
 }
 
-double Auton::getDiff(double a, double b) {
-  return a-b;
-}
-
 double Auton::getRotError(double initRot, double targetRot) {
-  return getDiff(targetRot, getDiff(Gyro.rotation(deg), initRot));
+  return targetRot-(Gyro.rotation(deg)-initRot);
 }
