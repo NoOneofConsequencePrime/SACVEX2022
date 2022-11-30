@@ -13,30 +13,34 @@ using namespace vex;
 competition Competition;
 
 // Parameters
+const double WasteDelay = 5;// msec
 const double MecDriveStrafeCorrection = 1.0;
 const double ControllerJoystickThreshold = 2;
-const double FastShooterRPM = 350, SlowShooterRPM = 300;
+const double FastShooterRPM = 350, SlowShooterRPM = 310;
 const double ShooterRPMUncertainty = 20;
 const double DistErrorMargin = 1;// cm
 const double DistKP = 0.35;
 const double DirErrorMargin = 1;// deg
 const double DirKP = 3.0;
-const double RotErrorMargin = 1;// deg
+const double RotErrorMargin = 0.5;// deg
 const double RotKP = 2.5;
 const double MoveDelay = 100;// msec
+const double AmbientRotDer = 500;// dr/dt (deg)
 
 // Global Variables
-double shooterRPM = SlowShooterRPM;
+double shooterRPM = FastShooterRPM;
 bool dirFwd = 1;
 
 // Init all objects
 Input Ct1;
 MecDrive mecDrive;
 Commisso commisso;
-Auton auton;
+Auton auton(WasteDelay);
+
+double lastTime;
 
 void debug() {
-  // Brain.Screen.clearScreen();
+  Brain.Screen.clearScreen();
 
   // setCursor(1, 1);
   // print("ShooterRightTemp: ");
@@ -77,8 +81,14 @@ void debug() {
   // print(ShooterRight.temperature(pct));
 
   // setCursor(1, 1);
-  // print("Rot: ");
-  // print(Gyro.rotation(deg));
+  // print("dy/dx: ");
+  // double tmp = auton.getRotOverTime();
+  // double tmpV = 500;
+  // if (tmp > tmpV || tmp < -tmpV) print(tmp);
+
+  // setCursor(1, 1);
+  // print(Brain.Timer-lastTime);
+  // lastTime = Brain.Timer;
 }
 
 void pre_auton(void) {
@@ -86,17 +96,21 @@ void pre_auton(void) {
 }
 
 void autonomous(void) {
+  auton.turn(90, 1.0, RotErrorMargin, RotKP, AmbientRotDer, MoveDelay);
+  debug();
+
   // mecDrive.driveFwd(1.0);
   // commisso.spinIntake(1.0);
   // wait(1.5, sec);
-  // auton.moveFwdPID(-20, 0.8, DistErrorMargin, DistKP, DirErrorMargin, DirKP, MoveDelay);
+  // auton.moveFwdPID(-10, 0.8, DistErrorMargin, DistKP, DirErrorMargin, DirKP, MoveDelay);
   // commisso.spinIntake(0.0);
-  // auton.moveFwdPID(-35, 0.8, DistErrorMargin, DistKP, DirErrorMargin, DirKP, MoveDelay);
-  // auton.turn(90, 1.0, RotErrorMargin, RotKP, MoveDelay);
+  // auton.moveFwdPID(-40, 0.8, DistErrorMargin, DistKP, DirErrorMargin, DirKP, MoveDelay);
+  // // auton.turn(90, 1.0, RotErrorMargin, RotKP, MoveDelay);
   // commisso.spinIntake(-1.0);
   // mecDrive.driveFwd(1.0);
   // wait(1.5, sec);
   // auton.moveFwdPID(-20, 0.8, DistErrorMargin, DistKP, DirErrorMargin, DirKP, MoveDelay);
+  // commisso.spinIntake(0.0);
 }
 
 void usercontrol(void) {
@@ -123,12 +137,12 @@ void usercontrol(void) {
     else if (Ct1.getButtonDown()) commisso.spinShooter(-30, ShooterRPMUncertainty);
     else commisso.spinShooter(0, ShooterRPMUncertainty);
 
-    if (Ct1.getButtonX()) auton.turn(-20, 1.0, RotErrorMargin, RotKP, MoveDelay);
+    // if (Ct1.getButtonX()) auton.turn(-20, 1.0, RotErrorMargin, RotKP, MoveDelay);
     // if (Ct1.getButtonX()) dirFwd = 1;
     // else if (Ct1.getButtonY()) dirFwd = 0;
 
     debug();
-    wait(5, msec); 
+    wait(WasteDelay, msec); 
   }
 }
 

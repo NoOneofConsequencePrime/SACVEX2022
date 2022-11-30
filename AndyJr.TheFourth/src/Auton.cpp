@@ -1,15 +1,20 @@
 #include <vex.h>
 #include <algorithm>
+#include <float.h>
 #include "Auton.h"
 
 using namespace vex;
 
-// Program Init
+// Class Init
+Auton::Auton(double WasteDelay) {
+  this->WasteDelay = WasteDelay;
+}
 
 // Program Parameters
 
 // Program Variables/Objects
 
+// Class Methods
 void Auton::moveFwdPID(double dist, double spd, double distErrorMargin, double distKP, double dirErrorMargin, double dirKP, double moveDelay) {// cm, deg
   double targetRot = dist/(M_PI*10.16)*360, distErrorDeg = distErrorMargin/(M_PI*10.16)*360;
   double LFi = LF.position(deg), LBi = LB.position(deg), RFi = RF.position(deg), RBi = RB.position(deg);
@@ -39,9 +44,9 @@ void Auton::moveFwdPID(double dist, double spd, double distErrorMargin, double d
   wait(moveDelay, msec);
 }
 
-void Auton::turn(double targetRot, double spd, double errorMargin, double KP, double moveDelay) {
+void Auton::turn(double targetRot, double spd, double errorMargin, double KP, double errorIROC, double moveDelay) {
   double initDir = Gyro.rotation(deg);
-  while (std::abs(getRotError(initDir, targetRot)) > errorMargin) {
+  while (std::abs(getRotError(initDir, targetRot)) > errorMargin || std::abs(getRotOverTime()) > errorIROC) {
     double error = getRotError(initDir, targetRot)*KP;
     double netError = (error)*spd;
 
@@ -70,4 +75,12 @@ double Auton::getAvgMotorError(double LFTarget, double LBTarget, double RFTarget
 
 double Auton::getRotError(double initRot, double targetRot) {
   return targetRot-(Gyro.rotation(deg)-initRot);
+}
+
+double Auton::getRotOverTime() {
+  double dRot = Gyro.rotation(deg)-lastDeg, dTime = Brain.Timer-lastTime;
+  lastDeg = Gyro.rotation(deg); lastTime = Brain.Timer;
+  double dydx = dRot/dTime*1e6;
+  if (dTime > WasteDelay) return 0;
+  return dydx;
 }

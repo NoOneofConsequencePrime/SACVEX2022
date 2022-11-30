@@ -15,7 +15,8 @@ void Commisso::spinIntake(double spd) {
   Intake.spin(fwd, spd*100.0, pct);
 }
 void Commisso::spinFeeder(double spd) {
-  if (RPMReached) Feeder.spin(fwd, spd*100.0, pct);
+  //if (RPMReached) Feeder.spin(fwd, spd*100.0, pct);
+  Feeder.spin(fwd, spd*100.0, pct);
 }
 void Commisso::spinShooter(double spd, double targetUncertainty) {// rpm
   ShooterRight.spin(fwd, spd, rpm);
