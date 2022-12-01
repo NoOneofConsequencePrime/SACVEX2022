@@ -64,13 +64,15 @@ void Auton::turn(double targetRot, double spd, double errorMargin, double KP, do
 }
 
 // Helper Methods
+double Auton::getAvgMotorPos(double LF, double LB, double RF, double RB) {
+  return (LF+LB+RF+RB)/4.0;
+}
+
 double Auton::getAvgMotorError(double LFTarget, double LBTarget, double RFTarget, double RBTarget) {
-  double LFError = LFTarget-LF.position(deg);
-  double LBError = LBTarget-LB.position(deg);
-  double RFError = RFTarget-RF.position(deg);
-  double RBError = RBTarget-RB.position(deg);
+  double targetAvg = getAvgMotorPos(LFTarget, LBTarget, RFTarget, RBTarget);
+  double curAvg = getAvgMotorPos(LF.position(deg), LB.position(deg), RF.position(deg), RB.position(deg));
   
-  return (LFError+LBError+RFError+RBError)/4.0;
+  return targetAvg-curAvg;
 }
 
 double Auton::getRotError(double initRot, double targetRot) {
@@ -80,7 +82,19 @@ double Auton::getRotError(double initRot, double targetRot) {
 double Auton::getRotOverTime() {
   double dRot = Gyro.rotation(deg)-lastDeg, dTime = Brain.Timer-lastTime;
   lastDeg = Gyro.rotation(deg); lastTime = Brain.Timer;
+
   double dydx = dRot/dTime*1e6;
+  if (dTime > WasteDelay) return 0;
+  return dydx;
+}
+
+double Auton::getDistOverTime() {
+  double curMotorAvg = getAvgMotorPos(LF.position(deg), LB.position(deg), RF.position(deg), RB.position(deg));
+  double lastMotorAvg = getAvgMotorPos(lastMotorPos.LF, lastMotorPos.LB, lastMotorPos.RF, lastMotorPos.RB);
+  double dDist = curMotorAvg-lastMotorAvg, dTime = Brain.Timer-lastTime;
+  lastMotorPos = {LF.position(deg), LB.position(deg), RF.position(deg), RB.position(deg)}; lastTime = Brain.Timer;
+
+  double dydx = dDist/dTime;
   if (dTime > WasteDelay) return 0;
   return dydx;
 }

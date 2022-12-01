@@ -17,7 +17,7 @@ const double WasteDelay = 5;// msec
 const double MecDriveStrafeCorrection = 1.0;
 const double ControllerJoystickThreshold = 2;
 const double FastShooterRPM = 350, SlowShooterRPM = 310;
-const double ShooterRPMUncertainty = 20;
+const double ShooterRPMUncertainty = 30;
 const double DistErrorMargin = 1;// cm
 const double DistKP = 0.35;
 const double DirErrorMargin = 1;// deg
@@ -86,9 +86,10 @@ void debug() {
   // double tmpV = 500;
   // if (tmp > tmpV || tmp < -tmpV) print(tmp);
 
-  // setCursor(1, 1);
-  // print(Brain.Timer-lastTime);
-  // lastTime = Brain.Timer;
+  setCursor(1, 1);
+  print("dydx: ");
+  double tmp = auton.getDistOverTime();
+  if (tmp != 0) print(tmp*1e2);
 }
 
 void pre_auton(void) {
