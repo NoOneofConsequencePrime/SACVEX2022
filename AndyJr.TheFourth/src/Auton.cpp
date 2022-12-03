@@ -6,8 +6,17 @@
 using namespace vex;
 
 // Class Init
-Auton::Auton(double WasteDelay) {
-  this->WasteDelay = WasteDelay;
+Auton::Auton(double wasteDelay, double distErrorMargin, double distKP, double ambientDistDer, double dirErrorMargin, double dirKP, double rotErrorMargin, double rotKP, double ambientRotDer, double moveDelay) {
+  this->wasteDelay = wasteDelay;
+  this->distErrorMargin = distErrorMargin;
+  this->distKP = distKP;
+  this->ambientDistDer = ambientDistDer;
+  this->dirErrorMargin = dirErrorMargin;
+  this->dirKP = dirKP;
+  this->rotErrorMargin = rotErrorMargin;
+  this->rotKP = rotKP;
+  this->ambientRotDer = ambientRotDer;
+  this->moveDelay = moveDelay;
 }
 
 // Program Parameters
@@ -15,12 +24,20 @@ Auton::Auton(double WasteDelay) {
 // Program Variables/Objects
 
 // Class Methods
-void Auton::moveFwdPID(double dist, double spd, double distErrorMargin, double distKP, double dirErrorMargin, double dirKP, double moveDelay) {// cm, deg
-  double targetRot = dist/(M_PI*10.16)*360, distErrorDeg = distErrorMargin/(M_PI*10.16)*360;
+void Auton::motorBrake(double moveDelay) {
+  LF.stop(brake);
+  LB.stop(brake);
+  RF.stop(brake);
+  RB.stop(brake);
+  wait(moveDelay, msec);
+}
+
+void Auton::moveFwd(double dist, double spd) {// cm, deg
+  double targetRot = dist/(M_PI*10.2)*360, distErrorDeg = distErrorMargin/(M_PI*10.2)*360;
   double LFi = LF.position(deg), LBi = LB.position(deg), RFi = RF.position(deg), RBi = RB.position(deg);
   double LFf = LFi+targetRot, LBf = LBi+targetRot, RFf = RFi+targetRot, RBf = RBi+targetRot;
   double initDir = Gyro.rotation(deg);
-  while (std::abs(getAvgMotorError(LFf, LBf, RFf, RBf)) > distErrorDeg) {
+  while (std::abs(getAvgMotorError(LFf, LBf, RFf, RBf)) > distErrorDeg || std::abs(getDistOverTime()) >= ambientDistDer) {
     double distError = getAvgMotorError(LFf, LBf, RFf, RBf)*distKP;
     double distNetError = distError;
 
@@ -44,10 +61,10 @@ void Auton::moveFwdPID(double dist, double spd, double distErrorMargin, double d
   wait(moveDelay, msec);
 }
 
-void Auton::turn(double targetRot, double spd, double errorMargin, double KP, double errorIROC, double moveDelay) {
+void Auton::turn(double targetRot, double spd) {
   double initDir = Gyro.rotation(deg);
-  while (std::abs(getRotError(initDir, targetRot)) > errorMargin || std::abs(getRotOverTime()) > errorIROC) {
-    double error = getRotError(initDir, targetRot)*KP;
+  while (std::abs(getRotError(initDir, targetRot)) > rotErrorMargin || std::abs(getRotOverTime()) >= ambientRotDer) {
+    double error = getRotError(initDir, targetRot)*rotKP;
     double netError = (error)*spd;
 
     LF.spin(fwd, netError, pct);
@@ -84,7 +101,7 @@ double Auton::getRotOverTime() {
   lastDeg = Gyro.rotation(deg); lastTime = Brain.Timer;
 
   double dydx = dRot/dTime*1e6;
-  if (dTime > WasteDelay) return 0;
+  if (dTime > wasteDelay) return 0;
   return dydx;
 }
 
@@ -94,7 +111,7 @@ double Auton::getDistOverTime() {
   double dDist = curMotorAvg-lastMotorAvg, dTime = Brain.Timer-lastTime;
   lastMotorPos = {LF.position(deg), LB.position(deg), RF.position(deg), RB.position(deg)}; lastTime = Brain.Timer;
 
-  double dydx = dDist/dTime;
-  if (dTime > WasteDelay) return 0;
+  double dydx = dDist/dTime*1e2;
+  if (dTime > wasteDelay) return 0;
   return dydx;
 }

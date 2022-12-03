@@ -11,11 +11,18 @@ using namespace vex;
 
 // Program Variables/Objects
 
+void Commisso::setAutonOverride(bool autonOverride) {
+  this->autonOverride = autonOverride;
+}
+
 void Commisso::spinIntake(double spd) {
   Intake.spin(fwd, spd*100.0, pct);
 }
+void Commisso::spinRoller(double spd) {
+  Feeder.spin(fwd, spd*100.0, pct);
+}
 void Commisso::spinFeeder(double spd) {
-  if (RPMReached) Feeder.spin(fwd, spd*100.0, pct);
+  if (RPMReached || autonOverride) Feeder.spin(fwd, spd*100.0, pct);
   else Feeder.spin(fwd, 0, pct);
 }
 void Commisso::spinShooter(double spd, double targetUncertainty) {// rpm

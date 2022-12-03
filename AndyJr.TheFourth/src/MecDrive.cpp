@@ -12,14 +12,14 @@ using namespace vex;
 
 // Program Variables/Objects
 
-void MecDrive::drive(double joyY, double joyX, double rotX, double maxSpd, double strafeCorrection) {
+void MecDrive::drive(double joyY, double joyX, double rotX, double spd, double strafeCorrection) {
   joyX *= strafeCorrection;
   double ratioCorrection = std::max(std::abs(joyY) + std::abs(joyX) + std::abs(rotX), 100.0);
 
-  double LFPow = (joyY + joyX + rotX) / ratioCorrection * maxSpd;
-  double LBPow = (joyY - joyX + rotX) / ratioCorrection * maxSpd;
-  double RFPow = (joyY - joyX - rotX) / ratioCorrection * maxSpd;
-  double RBPow = (joyY + joyX - rotX) / ratioCorrection * maxSpd;
+  double LFPow = (joyY + joyX + rotX) / ratioCorrection * spd*100.0;
+  double LBPow = (joyY - joyX + rotX) / ratioCorrection * spd*100.0;
+  double RFPow = (joyY - joyX - rotX) / ratioCorrection * spd*100.0;
+  double RBPow = (joyY + joyX - rotX) / ratioCorrection * spd*100.0;
 
   LF.spin(fwd, LFPow, pct);
   LB.spin(fwd, LBPow, pct);
