@@ -100,46 +100,105 @@ void pre_auton(void) {
   vexcodeInit();
 }
 
-void autonomous(void) {
+void autonLeft() {// left setup, touch roller, 2 shots mid-field; roller: 0 - up, 1 - down (with respect to closest side)
   // Setup
   commisso.setAutonOverride(true);
 
   mecDrive.driveFwd(1.0);
   commisso.spinRoller(1.0);
-  wait(0.5, sec);
+  wait(0.15, sec);
   auton.motorBrake(MoveDelay);
   auton.moveFwd(-10, 0.8);
   commisso.spinRoller(0.0);
   commisso.spinIntake(1.0);
   auton.turn(-90, 1.0);
+  auton.moveFwd(120, 1.0);
   commisso.spinIntake(0.0);
-  auton.moveFwd(127, 1.0);
-  auton.turn(55, 0.7);
-  auton.moveFwd(-92, 0.8);
+  auton.turn(55.5, 0.7);
+  auton.moveFwd(-75, 0.8);
 
-  commisso.spinShooter(shooterRPM, ShooterRPMUncertainty);
+  commisso.spinShooter(shooterRPM+5, ShooterRPMUncertainty);
   wait(3, sec);
   commisso.spinFeeder(1.0);
   wait(0.3, sec);
   commisso.spinFeeder(0.0);
+  commisso.spinShooter(shooterRPM+9, ShooterRPMUncertainty);
   wait(3, sec);
   commisso.spinFeeder(1.0);
   wait(1.0, sec);
   commisso.spinShooter(0.0, ShooterRPMUncertainty); commisso.spinFeeder(0.0);
 }
 
-/*
-double Auton::getDistOverTime() {
-  double curMotorAvg = getAvgMotorPos(LF.position(deg), LB.position(deg), RF.position(deg), RB.position(deg));
-  double lastMotorAvg = getAvgMotorPos(lastMotorPos.LF, lastMotorPos.LB, lastMotorPos.RF, lastMotorPos.RB);
-  double dDist = curMotorAvg-lastMotorAvg, dTime = Brain.Timer-lastTime;
-  lastMotorPos = {LF.position(deg), LB.position(deg), RF.position(deg), RB.position(deg)}; lastTime = Brain.Timer;
+void autonRight() {// right setup, corner of auton zone, 2 shots far-field: 0 - up, 1 - down (with respect to closest side)
+  // Setup
+  commisso.setAutonOverride(true);
 
-  double dydx = dDist/dTime*1e2;
-  if (dTime > WasteDelay) return 0;
-  return dydx;
+  auton.moveFwd(65, 0.8);
+  auton.turn(90, 1.0);
+  mecDrive.driveFwd(1.0);
+  commisso.spinRoller(1.0);
+  wait(0.4, sec);
+  auton.motorBrake(MoveDelay);
+  commisso.spinRoller(0.0);
+  commisso.spinIntake(1.0);
+  auton.moveFwd(-10, 0.8);
+  wait(1, sec);
+  commisso.spinIntake(0.0);
+  auton.turn(-5, 0.7);
+  
+  commisso.spinShooter(shooterRPM+28, ShooterRPMUncertainty);
+  wait(3, sec);
+  commisso.spinFeeder(1.0);
+  wait(0.25, sec);
+  commisso.spinFeeder(0.0);
+  commisso.spinShooter(shooterRPM+29, ShooterRPMUncertainty);
+  wait(3, sec);
+  commisso.spinFeeder(1.0);
+  wait(1.0, sec);
+  commisso.spinShooter(0.0, ShooterRPMUncertainty); commisso.spinFeeder(0.0);
 }
-*/
+
+void autonSkill() {
+  // Setup
+  commisso.setAutonOverride(true);
+
+  mecDrive.driveFwd(1.0);
+  commisso.spinRoller(-1.0);
+  wait(0.4, sec);
+  auton.motorBrake(MoveDelay);
+  commisso.spinIntake(1.0);
+  auton.moveFwd(-47, 0.8);
+  commisso.spinRoller(0.0);
+  auton.turn(90.0, 1.0);
+  commisso.spinIntake(0.0);
+  mecDrive.driveFwd(1.0);
+  commisso.spinRoller(-1.0);
+  wait(1.0, sec);
+  auton.motorBrake(MoveDelay);
+  auton.moveFwd(-20, 0.8);
+  commisso.spinRoller(0.0);
+  auton.turn(180.0, 1.0);
+  auton.moveFwd(100, 0.8);
+  auton.turn(57, 0.7);
+  auton.moveFwd(-30, 0.8);
+
+  commisso.spinShooter(shooterRPM+2, ShooterRPMUncertainty);
+  wait(5, sec);
+  commisso.spinFeeder(1.0);
+  wait(1, sec);
+  commisso.spinFeeder(0.0);
+  commisso.spinShooter(shooterRPM+6, ShooterRPMUncertainty);
+  wait(3, sec);
+  commisso.spinFeeder(1.0);
+  wait(1.0, sec);
+  commisso.spinShooter(0.0, ShooterRPMUncertainty); commisso.spinFeeder(0.0);
+}
+
+void autonomous(void) {
+  // autonLeft();
+  autonRight();
+  // autonSkill();
+}
 
 double lastMotorAvg = 0, lastTime = 0, lastVolt = 8;
 
@@ -163,6 +222,7 @@ void usercontrol(void) {
     else commisso.spinIntake(0);
 
     if (Ct1.getRightLowTrig()) commisso.spinFeeder(1.0);
+    else if (Ct1.getButtonUp()) commisso.spinRoller(-1.0);
     else commisso.spinFeeder(0);
 
     if (Ct1.getButtonA()) shooterRPM = FastShooterRPM;
