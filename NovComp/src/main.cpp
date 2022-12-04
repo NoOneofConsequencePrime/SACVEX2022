@@ -1,4 +1,4 @@
-/*----------------------------------------------------------------------------*/
+ /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
 /*    Author:       VEX                                                       */
@@ -15,6 +15,11 @@
 // FR                   motor         2               
 // BL                   motor         3               
 // BR                   motor         4               
+// Intake               motor         5               
+// Shooter1             motor         6               
+// Shooter2             motor         7               
+// Dispense             motor         8               
+// Rollers              motor         9               
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
@@ -61,6 +66,7 @@ void pre_auton(void) {
 void autonomous(void) {
   // ..........................................................................
   // Insert autonomous user code here.
+  
   // ..........................................................................
 }
 
@@ -82,11 +88,27 @@ void usercontrol(void) {
   // User control code here, inside the loop
   while (1) {
     controls.setChannels(ControllerJoystickThreshold);
-    motors.drive(controls.getChan3(), controls.getChan4(), controls.getChan1(), 200, 1);
+    controls.setButtons();
+    motors.drive(controls.getChan3(), controls.getChan4(), controls.getChan1(), 200, 1.02);
     if (controls.getLeftTrigTop()) {
-
+      Intake.spin(forward, 100, pct);
+    } else {Intake.spin(fwd, 0 ,pct);}
+  
+    if (controls.getLeftTrigDown()) {
+      Shooter1.spin(reverse, 100, pct);
+      Shooter2.spin(fwd, 100, pct);
+    } else {
+      Shooter1.spin(fwd, 0, pct); Shooter2.spin(fwd, 0, pct);
     }
 
+    if (controls.getRightTrigTop()) {
+      Dispense.spin(reverse, 100, pct);
+    } else {Dispense.spin(reverse, 0, pct);}
+
+    if (controls.getRightTrigDown()) {
+      Rollers.spin(fwd, 100, pct);
+    } else {Rollers.spin(reverse, 0, pct);}
+    
     wait(5, msec);
   }
 }

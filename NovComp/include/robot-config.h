@@ -8,6 +8,11 @@ extern motor FL;
 extern motor FR;
 extern motor BL;
 extern motor BR;
+extern motor Intake;
+extern motor Shooter1;
+extern motor Shooter2;
+extern motor Dispense;
+extern motor Rollers;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
