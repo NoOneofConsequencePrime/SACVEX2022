@@ -6,6 +6,11 @@
 using namespace vex;
 
 void ArcadeDrive::drive(double joyY, double rotX, double spd) {
+  LF.setStopping(brake);
+  LB.setStopping(brake);
+  RF.setStopping(brake);
+  RB.setStopping(brake);
+
   double ratioCorrection = std::max(std::abs(joyY)+std::abs(rotX), 100.0);
 
   double LFPow = (joyY+rotX) / ratioCorrection * spd*100.0;

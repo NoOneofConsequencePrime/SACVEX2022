@@ -27,6 +27,7 @@ competition Competition;
 /* Parameters */
 const double wasteDelay = 5;// msec
 const double JoystickDeadzone = 2;// 100
+const double FWDtoRotSpdMultiplier = 0.3;// 1.0
 
 /* Global */
 double shooterRPM = 300;// 600
@@ -69,6 +70,7 @@ void usercontrol(void) {
     else vorBuster.spinShooter(0);
 
     debug();
+    wait(wasteDelay, msec);
   }
 }
 
