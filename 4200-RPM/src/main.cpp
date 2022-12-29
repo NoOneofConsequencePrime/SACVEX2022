@@ -54,7 +54,7 @@ void usercontrol(void) {
     Ct1.setChannels(JoystickDeadzone); Ct1.setButtons();
 
     // Arcade Drive
-    arcDrive.drive(Ct1.getCh3(), Ct1.getCh1(), 1.0);
+    arcDrive.drive(Ct1.getCh3(), Ct1.getCh1()*FWDtoRotSpdMultiplier, 1.0);
 
     // Robot Controls
     if (Ct1.getLeftHighTrig()) vorBuster.spinIntake(1.0);
