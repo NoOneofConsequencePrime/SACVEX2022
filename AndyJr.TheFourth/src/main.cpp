@@ -94,6 +94,25 @@ void debug() {
   // setCursor(1, 1);
   // print("rpm: ");
   // print(std::abs(ShooterRight.velocity(rpm)-300));
+
+  // Vision.takeSnapshot(Vision__REDBASKET);
+  // Brain.Screen.setFillColor(red);
+  // for (int i = 0; i < Vision.objectCount; i++) {
+  //   vision::object obj = Vision.objects[i];
+  //   int x = obj.originX*480/300, y = obj.originY*240/200, w = obj.width*480/300, h = obj.height*240/200;
+  //   Brain.Screen.drawRectangle(x, y, w, h);
+  //   // setCursor(i+1, 1);
+  //   // print(obj.width); print(", "); print(obj.height);
+  // }
+
+  // setCursor(1, 1);
+  // print("test: ");
+  // vision::object tmpa = Vision.objects[0];
+  // vision::object tmpb = Vision.objects[1];
+  // print(tmpa.centerY);
+  // setCursor(2, 1);
+  // print("test: ");
+  // print(tmpb.centerY);
 }
 
 void pre_auton(void) {
@@ -206,7 +225,7 @@ double getMotorAvg() {
   return (ShooterLeft.velocity(rpm)+ShooterRight.velocity(rpm))/2.0;
 }
 void usercontrol(void) {
-  commisso.setAutonOverride(false);
+  commisso.setAutonOverride(true);
 
   while (1) {
     // Get Input
@@ -230,7 +249,7 @@ void usercontrol(void) {
 
     if (Ct1.getRightHighTrig()) commisso.spinShooter(shooterRPM, ShooterRPMUncertainty);
     else if (Ct1.getButtonDown()) commisso.spinShooter(-30, ShooterRPMUncertainty);
-    else commisso.spinShooter(0, ShooterRPMUncertainty);
+    // else commisso.spinShooter(0, ShooterRPMUncertainty);
 
     debug();
     wait(WasteDelay, msec); 

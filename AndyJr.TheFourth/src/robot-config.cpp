@@ -18,6 +18,11 @@ motor ShooterRight = motor(PORT15, ratio6_1, false);
 motor ShooterLeft = motor(PORT16, ratio6_1, true);
 motor Feeder = motor(PORT14, ratio18_1, true);
 inertial Gyro = inertial(PORT10);
+/*vex-vision-config:begin*/
+signature Vision__REDBASKET = signature (1, 6697, 7203, 6950, -541, 1, -270, 11, 0);
+signature Vision__BG = signature (2, 0, 0, 0, 0, 0, 0, 3, 0);
+vision Vision = vision (PORT9, 50, Vision__REDBASKET, Vision__BG);
+/*vex-vision-config:end*/
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
