@@ -4,6 +4,7 @@
 #include "MecDrive.h"
 #include "Commisso.h"
 #include "Auton.h"
+#include "Camera.h"
 
 using namespace vex;
 
@@ -15,7 +16,7 @@ competition Competition;
 
 // Parameters
 const double WasteDelay = 5;// msec
-const double MecDriveStrafeCorrection = 1.0;
+const double MecDriveCorrection = 1.0;
 const double ControllerJoystickThreshold = 2;
 const double FastShooterRPM = 365, SlowShooterRPM = 320;
 const double ShooterRPMUncertainty = 30;
@@ -38,81 +39,12 @@ Input Ct1;
 MecDrive mecDrive;
 Commisso commisso;
 Auton auton(WasteDelay, DistErrorMargin, DistKP, AmbientDistDer, DirErrorMargin, DirKP, RotErrorMargin, RotKP, AmbientRotDer, MoveDelay);
+Camera cam;
 
 void debug() {
   Brain.Screen.clearScreen();
 
-  // setCursor(1, 1);
-  // print("ShooterRightTemp: ");
-  // print(ShooterRight.temperature(pct));
-  // setCursor(2, 1);
-  // print("ShooterLeftTemp: ");
-  // print(ShooterLeft.temperature(pct));
-  // setCursor(3, 1);
-  // print("IntakeTemp: ");
-  // print(Intake.temperature(pct));
-  // setCursor(4, 1);
-  // print("FeederTemp: ");
-  // print(Feeder.temperature(pct));
-  // setCursor(5, 1);
-  // print("RBTemp: ");
-  // print(RB.temperature(pct));
-  // setCursor(6, 1);
-  // print("RFTemp: ");
-  // print(RF.temperature(pct));
-  // setCursor(7, 1);
-  // print("LBTemp: ");
-  // print(LB.temperature(pct));
-  // setCursor(8, 1);
-  // print("LFTemp: ");
-  // print(LF.temperature(pct));
-
-  // setCursor(1, 1);
-  // print("ShooterEff: ");
-  // print(ShooterRight.efficiency(pct));
-  // setCursor(2, 1);
-  // print("ShooterVelRPM: ");
-  // print(ShooterRight.velocity(rpm));
-  // setCursor(3, 1);
-  // print("ShooterVelPCT: ");
-  // print(ShooterRight.velocity(pct));
-  // setCursor(4, 1);
-  // print("ShooterTemp: ");
-  // print(ShooterRight.temperature(pct));
-
-  // setCursor(1, 1);
-  // print("dy/dx: ");
-  // double tmp = auton.getRotOverTime();
-  // double tmpV = 500;
-  // if (tmp > tmpV || tmp < -tmpV) print(tmp);
-
-  // setCursor(1, 1);
-  // print("dydx: ");
-  // double tmp = auton.getDistOverTime();
-  // if (tmp != 0) print(tmp);
-
-  // setCursor(1, 1);
-  // print("rpm: ");
-  // print(std::abs(ShooterRight.velocity(rpm)-300));
-
-  // Vision.takeSnapshot(Vision__REDBASKET);
-  // Brain.Screen.setFillColor(red);
-  // for (int i = 0; i < Vision.objectCount; i++) {
-  //   vision::object obj = Vision.objects[i];
-  //   int x = obj.originX*480/300, y = obj.originY*240/200, w = obj.width*480/300, h = obj.height*240/200;
-  //   Brain.Screen.drawRectangle(x, y, w, h);
-  //   // setCursor(i+1, 1);
-  //   // print(obj.width); print(", "); print(obj.height);
-  // }
-
-  // setCursor(1, 1);
-  // print("test: ");
-  // vision::object tmpa = Vision.objects[0];
-  // vision::object tmpb = Vision.objects[1];
-  // print(tmpa.centerY);
-  // setCursor(2, 1);
-  // print("test: ");
-  // print(tmpb.centerY);
+  cam.showView();
 }
 
 void pre_auton(void) {
@@ -232,7 +164,7 @@ void usercontrol(void) {
     Ct1.setChannels(ControllerJoystickThreshold); Ct1.setButtons();
 
     // Mecanum Drive
-    if (dirFwd) mecDrive.drive(Ct1.getCh3(), Ct1.getCh4(), Ct1.getCh1(), 1.0, MecDriveStrafeCorrection);
+    if (dirFwd) mecDrive.drive(Ct1.getCh3(), Ct1.getCh4(), Ct1.getCh1(), 1.0, MecDriveCorrection);
     // else mecDrive.drive(-Ct1.getCh3(), -Ct1.getCh4(), -Ct1.getCh1(), 100, MecDriveStrafeCorrection);
     
     // Robot Controls

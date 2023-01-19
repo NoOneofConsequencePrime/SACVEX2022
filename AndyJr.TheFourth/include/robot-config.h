@@ -16,7 +16,7 @@ extern motor ShooterLeft;
 extern motor Feeder;
 extern inertial Gyro;
 extern signature Vision__REDBASKET;
-extern signature Vision__BG;
+extern signature Vision__BLUEBASKET;
 extern signature Vision__SIG_3;
 extern signature Vision__SIG_4;
 extern signature Vision__SIG_5;
