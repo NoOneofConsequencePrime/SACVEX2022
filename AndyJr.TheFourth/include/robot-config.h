@@ -23,6 +23,9 @@ extern signature Vision__SIG_5;
 extern signature Vision__SIG_6;
 extern signature Vision__SIG_7;
 extern vision Vision;
+extern digital_out Indexer;
+extern digital_out RightExpansion;
+extern digital_out LeftExpansion;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

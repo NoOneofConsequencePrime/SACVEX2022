@@ -1,3 +1,70 @@
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// RB                   motor         12              
+// RF                   motor         14              
+// LB                   motor         11              
+// LF                   motor         13              
+// Intake               motor         10              
+// ShooterRight         motor         20              
+// ShooterLeft          motor         19              
+// Feeder               motor         6               
+// Gyro                 inertial      18              
+// Vision               vision        9               
+// Indexer              digital_out   A               
+// RightExpansion       digital_out   B               
+// LeftExpansion        digital_out   C               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// RB                   motor         12              
+// RF                   motor         14              
+// LB                   motor         11              
+// LF                   motor         13              
+// Intake               motor         10              
+// ShooterRight         motor         20              
+// ShooterLeft          motor         19              
+// Feeder               motor         6               
+// Gyro                 inertial      18              
+// Vision               vision        9               
+// Indexer              digital_out   A               
+// RightExpansion       digital_out   B               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// RB                   motor         12              
+// RF                   motor         14              
+// LB                   motor         11              
+// LF                   motor         13              
+// Intake               motor         10              
+// ShooterRight         motor         20              
+// ShooterLeft          motor         19              
+// Feeder               motor         6               
+// Gyro                 inertial      18              
+// Vision               vision        9               
+// Indexer              digital_out   A               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// RB                   motor         12              
+// RF                   motor         14              
+// LB                   motor         11              
+// LF                   motor         13              
+// Intake               motor         10              
+// ShooterRight         motor         20              
+// ShooterLeft          motor         19              
+// Feeder               motor         6               
+// Gyro                 inertial      18              
+// Vision               vision        9               
+// Indexer              digital_out   A               
+// ---- END VEXCODE CONFIGURED DEVICES ----
 #include <vex.h>
 #include <algorithm>
 #include "Input.h"
@@ -163,25 +230,45 @@ void usercontrol(void) {
     // Get Input
     Ct1.setChannels(ControllerJoystickThreshold); Ct1.setButtons();
 
-    // Mecanum Drive
-    if (dirFwd) mecDrive.drive(Ct1.getCh3(), Ct1.getCh4(), Ct1.getCh1(), 1.0, MecDriveCorrection);
-    // else mecDrive.drive(-Ct1.getCh3(), -Ct1.getCh4(), -Ct1.getCh1(), 100, MecDriveStrafeCorrection);
-    
     // Robot Controls
     if (Ct1.getLeftHighTrig()) commisso.spinIntake(1.0);
     else if (Ct1.getLeftLowTrig()) commisso.spinIntake(-100);
     else commisso.spinIntake(0);
 
-    if (Ct1.getRightLowTrig()) commisso.spinFeeder(1.0);
-    else if (Ct1.getButtonUp()) commisso.spinRoller(-1.0);
-    else commisso.spinFeeder(0);
+    // if (Ct1.getRightLowTrig()) Indexer.set(0);
+    // else Indexer.set(1);
 
-    if (Ct1.getButtonA()) shooterRPM = FastShooterRPM;
-    else if (Ct1.getButtonB()) shooterRPM = SlowShooterRPM;
+    if (Ct1.getRightLowTrig()) {
+      RightExpansion.set(1);
+      LeftExpansion.set(1);
+    } else {
+      RightExpansion.set(0);
+      LeftExpansion.set(0);
+    }
 
     if (Ct1.getRightHighTrig()) commisso.spinShooter(shooterRPM, ShooterRPMUncertainty);
     else if (Ct1.getButtonDown()) commisso.spinShooter(-30, ShooterRPMUncertainty);
-    // else commisso.spinShooter(0, ShooterRPMUncertainty);
+    else commisso.spinShooter(0, ShooterRPMUncertainty);
+
+    // // Mecanum Drive
+    // if (dirFwd) mecDrive.drive(Ct1.getCh3(), Ct1.getCh4(), Ct1.getCh1(), 1.0, MecDriveCorrection);
+    // // else mecDrive.drive(-Ct1.getCh3(), -Ct1.getCh4(), -Ct1.getCh1(), 100, MecDriveStrafeCorrection);
+    
+    // // Robot Controls
+    // if (Ct1.getLeftHighTrig()) commisso.spinIntake(1.0);
+    // else if (Ct1.getLeftLowTrig()) commisso.spinIntake(-100);
+    // else commisso.spinIntake(0);
+
+    // if (Ct1.getRightLowTrig()) commisso.spinFeeder(1.0);
+    // else if (Ct1.getButtonUp()) commisso.spinRoller(-1.0);
+    // else commisso.spinFeeder(0);
+
+    // if (Ct1.getButtonA()) shooterRPM = FastShooterRPM;
+    // else if (Ct1.getButtonB()) shooterRPM = SlowShooterRPM;
+
+    // if (Ct1.getRightHighTrig()) commisso.spinShooter(shooterRPM, ShooterRPMUncertainty);
+    // else if (Ct1.getButtonDown()) commisso.spinShooter(-30, ShooterRPMUncertainty);
+    // // else commisso.spinShooter(0, ShooterRPMUncertainty);
 
     debug();
     wait(WasteDelay, msec); 
