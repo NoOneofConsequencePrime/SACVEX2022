@@ -10,6 +10,150 @@
 // ShooterR             motor         15              
 // RB                   motor         20              
 // LB                   motor         21              
+// Expansion            digital_out   H               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Intake               motor         5               
+// RF                   motor         6               
+// LF                   motor         7               
+// Feeder               motor         10              
+// ShooterL             motor         14              
+// ShooterR             motor         15              
+// RB                   motor         20              
+// LB                   motor         21              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Intake               motor         5               
+// RF                   motor         6               
+// LF                   motor         7               
+// Feeder               motor         10              
+// ShooterL             motor         14              
+// ShooterR             motor         15              
+// RB                   motor         20              
+// LB                   motor         21              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Intake               motor         5               
+// RF                   motor         6               
+// LF                   motor         7               
+// Feeder               motor         10              
+// ShooterL             motor         14              
+// ShooterR             motor         15              
+// RB                   motor         20              
+// LB                   motor         21              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Intake               motor         5               
+// RF                   motor         6               
+// LF                   motor         7               
+// Feeder               motor         10              
+// ShooterL             motor         14              
+// ShooterR             motor         15              
+// RB                   motor         20              
+// LB                   motor         21              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Intake               motor         5               
+// RF                   motor         6               
+// LF                   motor         7               
+// Feeder               motor         10              
+// ShooterL             motor         14              
+// ShooterR             motor         15              
+// RB                   motor         20              
+// LB                   motor         21              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Intake               motor         5               
+// RF                   motor         6               
+// LF                   motor         7               
+// Feeder               motor         10              
+// ShooterL             motor         14              
+// ShooterR             motor         15              
+// RB                   motor         20              
+// LB                   motor         21              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Intake               motor         5               
+// RF                   motor         6               
+// LF                   motor         7               
+// Feeder               motor         10              
+// ShooterL             motor         14              
+// ShooterR             motor         15              
+// RB                   motor         20              
+// LB                   motor         21              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Intake               motor         5               
+// RF                   motor         6               
+// LF                   motor         7               
+// Feeder               motor         10              
+// ShooterL             motor         14              
+// ShooterR             motor         15              
+// RB                   motor         20              
+// LB                   motor         21              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Intake               motor         5               
+// RF                   motor         6               
+// LF                   motor         7               
+// Feeder               motor         10              
+// ShooterL             motor         14              
+// ShooterR             motor         15              
+// RB                   motor         20              
+// LB                   motor         21              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Intake               motor         5               
+// RF                   motor         6               
+// LF                   motor         7               
+// Feeder               motor         10              
+// ShooterL             motor         14              
+// ShooterR             motor         15              
+// RB                   motor         20              
+// LB                   motor         21              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Intake               motor         5               
+// RF                   motor         6               
+// LF                   motor         7               
+// Feeder               motor         10              
+// ShooterL             motor         14              
+// ShooterR             motor         15              
+// RB                   motor         20              
+// LB                   motor         21              
 // ---- END VEXCODE CONFIGURED DEVICES ----
 #include <vex.h>
 #include "Input.h"
@@ -30,7 +174,7 @@ const double JoystickDeadzone = 2;// 100
 const double FWDtoRotSpdMultiplier = 0.3;// 1.0
 
 /* Global */
-double shooterRPM = 300;// 600
+double shooterRPM = 375;// 600
 
 /* Instantiate all objects */
 Input Ct1;
@@ -54,7 +198,9 @@ void usercontrol(void) {
     Ct1.setChannels(JoystickDeadzone); Ct1.setButtons();
 
     // Arcade Drive
-    arcDrive.drive(Ct1.getCh3(), Ct1.getCh1()*FWDtoRotSpdMultiplier, 1.0);
+    arcDrive.drive(Ct1.getCh2(), Ct1.getCh1()*FWDtoRotSpdMultiplier, 1.0);
+    arcDrive.drive(Ct1.getCh3(), Ct1.getCh4()*FWDtoRotSpdMultiplier, 1.0);
+
 
     // Robot Controls
     if (Ct1.getLeftHighTrig()) vorBuster.spinIntake(1.0);
@@ -68,6 +214,9 @@ void usercontrol(void) {
     if (Ct1.getRightHighTrig()) vorBuster.spinShooter(shooterRPM);
     else if (Ct1.getButtonDown()) vorBuster.spinShooter(-30);
     else vorBuster.spinShooter(0);
+
+    if (Ct1.getButtonUp()) Expansion.set(1);
+    else Expansion.set(0);
 
     debug();
     wait(wasteDelay, msec);

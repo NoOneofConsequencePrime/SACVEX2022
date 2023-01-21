@@ -12,6 +12,7 @@ extern motor ShooterL;
 extern motor ShooterR;
 extern motor RB;
 extern motor LB;
+extern digital_out Expansion;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
