@@ -18,6 +18,7 @@ motor ShooterR = motor(PORT15, ratio6_1, false);
 motor RB = motor(PORT20, ratio18_1, true);
 motor LB = motor(PORT21, ratio18_1, false);
 digital_out Expansion = digital_out(Brain.ThreeWirePort.H);
+inertial Gyro = inertial(PORT4);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
