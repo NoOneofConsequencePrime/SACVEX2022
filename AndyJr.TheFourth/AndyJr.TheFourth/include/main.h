@@ -56,6 +56,8 @@ using namespace lcd;
 // using namespace pros::literals;
 // using namespace okapi;
 
+double M_PI = 3.1415926536;
+
 /**
  * Prototypes for the competition control tasks are redefined here to ensure
  * that they can be called from user code (i.e. calling autonomous from a

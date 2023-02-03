@@ -1,4 +1,18 @@
 #include "main.h"
+#include "robot-config.h"
+#include "Input.h"
+#include "Commisso.h"
+#include "MecDrive.h"
+#include "Sensor.h"
+#include "Auton.h"
+
+// Parameters
+double driveSpd = 1.0;// -1.0 ~ 1.0
+
+// Init objects
+Input Ct1;
+Commisso commisso;
+MecDrive mecDrive;
 
 void initialize() {
 	lcd::initialize();
@@ -12,57 +26,32 @@ void autonomous() {
 
 }
 
-unsigned int curTime = 0, prevTime = 0;
-// double kp = 0.375, ki = 0.0001, kd = 0.00002;// 0.75
-// double kp = 0.48, ki = 0.001, kd = 2;
-// double kp = 0.3, ki = 0.00035, kd = 0;
-// double kp = 0.3, ki = 0.001, kd = 0.2;
-/* double kp = 0.3, ki = 0.0003, kd = 0.2; */
-double kp = 0.3, ki = 0.00017, kd = 0.2;
-double elapsedTime = 0;
-double error = 0;
-double lastError = 0;
-double input = 0, output = 0, setPoint = 250;
-double cumError = 0, rateError = 0;
 void opcontrol() {
-	Motor leftShooter(9, E_MOTOR_GEAR_600, false), rightShooter(7, E_MOTOR_GEAR_600, true);
+	const double FAST_RPM = 450, SLOW_RPM = 370;
+	double shooterRPM = SLOW_RPM;
 
-	Controller master(CONTROLLER_MASTER);
 	while (true) {
-		if (master.get_digital(DIGITAL_A)) {
-			input = (leftShooter.get_actual_velocity()+rightShooter.get_actual_velocity())/2.0;
+		// Mecanum Drive
+		mecDrive.drive(Ct1.getJoyLY(), Ct1.getJoyLX(), Ct1.getJoyRX(), driveSpd);
 
-			curTime = millis();
-			elapsedTime = (double)(curTime-prevTime);
+		// Robot Controls
+		if (Ct1.getL1()) commisso.spinIntake(1.0);
+		else if (Ct1.getL2()) commisso.spinIntake(-1.0);
+		else commisso.spinIntake(0.0);
 
-			error = setPoint - input;
-			cumError += error*elapsedTime;
-			rateError = (error-lastError)/elapsedTime;
+		if (Ct1.getR2()) commisso.extendIndexer(true);
+		else commisso.extendIndexer(false);
 
-			double out = kp*error;
-			out += ki*cumError;
-			out += kd*rateError;
+		if (Ct1.getUp()) commisso.spinRoller(1.0);
+		else if (Ct1.getDown()) commisso.spinRoller(-1.0);
+		else commisso.spinRoller(0.0);
 
-			lastError = error;
-			prevTime = curTime;
+		if (Ct1.getB()) shooterRPM = SLOW_RPM;
+		else if (Ct1.getA()) shooterRPM = FAST_RPM;
 
-			leftShooter.move(out); rightShooter.move(out);
+		if (Ct1.getR1()) commisso.spinShooter(shooterRPM);
+		else commisso.spinShooter(0);
 
-			// print(2, "volt: %.2f", out);
-			// print(3, "rpm: %.2f", (leftShooter.get_actual_velocity()+rightShooter.get_actual_velocity())/2.0);
-			printf("%.1f\n", (leftShooter.get_actual_velocity()+rightShooter.get_actual_velocity())/2.0);
-		} else if (master.get_digital(DIGITAL_B)) {
-			cumError = 0;
-			leftShooter.move(90);
-			rightShooter.move(90);
-		} else {
-			cumError = 0;
-			leftShooter.move(0);
-			rightShooter.move(0);
-		}
-		// lcd::print(3, "%.2f", leftShooter.get_voltage()/1000.0);
-		delay(20);
-		// lcd::clear_line(2);
-		// lcd::clear_line(3);
+		delay(10);
 	}
 }
