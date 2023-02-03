@@ -13,7 +13,8 @@ bool Auton::chkDistRange() {
 }
 bool Auton::chkRotRange(double target) {
     bool ucRange = abs(target-prezi.getRot()) < ROT_UC_RANGE;
-    bool rateRange = 
+    // bool rateRange = 
+    return false;
 }
 double Auton::getPID(double input, double setPoint, double KP, double KI, double KD) {
     double curTime = millis();
@@ -37,5 +38,5 @@ void Auton::pidMove(double dist, double dir, double spd) {
 }
 void Auton::pidTurn(double target, double spd) {
     prezi.resetGyro(); cumError = 0;
-    while ()
+    // while ()
 }

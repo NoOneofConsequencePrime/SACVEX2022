@@ -2,19 +2,12 @@
 #include "robot-config.h"
 #include "Commisso.h"
 
-void Commisso::setAutonOverride(bool autonOverride) {
-    this->autonOverride = autonOverride;
-}
 void Commisso::spinIntake(double spd) {
-    double rpm = spd*200;
-    intakeA.move_velocity(rpm); intakeB.move_velocity(rpm);
-}
-void Commisso::spinRoller(double spd) {
-    spinIntake(spd);
+    double volt = spd*127;
+    intakeA.move_velocity(volt); intakeB.move_velocity(volt);
 }
 void Commisso::extendIndexer(bool pneuState) {
-    if (rpmReached || autonOverride) indexer.set_value(!pneuState);
-    else indexer.set_value(true);
+    indexer.set_value(!pneuState);
 }
 void Commisso::extendExpansion(bool pneuState) {
     expansion.set_value(pneuState);

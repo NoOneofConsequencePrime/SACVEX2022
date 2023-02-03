@@ -28,6 +28,7 @@ void MecDrive::brakeAll() {
 }
 void MecDrive::drive(double joyY, double joyX, double rotX, double spd) {
     if (joyY == 0 && joyX == 0 && rotX == 0) {
+        set_hold();
         brakeAll(); return;
     }
     double ratioCorrection = max(abs(joyY)+abs(joyX)+abs(rotX), 127.0);
@@ -51,7 +52,7 @@ void MecDrive::turn(double spd) {
     RB.move_velocity(-vel);
 }
 void MecDrive::move(double dir, double spd) {
-    double rad = dir*M_PI/360.0;
+    double rad = dir*3.14/360.0;
     double velX = sin(rad), velY = cos(rad);
 
     double normalCorrection = 1.0 / max(abs(velX), abs(velY));

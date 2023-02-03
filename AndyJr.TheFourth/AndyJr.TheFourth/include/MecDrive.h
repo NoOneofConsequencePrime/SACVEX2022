@@ -1,3 +1,6 @@
+#ifndef MECDRIVE_H
+#define MECDRIVE_H
+
 class MecDrive {
   private:
   
@@ -7,3 +10,5 @@ class MecDrive {
     void turn(double spd);// -1.0 ~ 1.0
     void move(double dir, double spd);// degs, -1.0 ~ 1.0
 };
+
+#endif

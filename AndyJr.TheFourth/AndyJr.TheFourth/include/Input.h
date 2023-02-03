@@ -1,3 +1,6 @@
+#ifndef INPUT_H
+#define INPUT_H
+
 class Input {
   private:
     const double DEADZONE_THRESHOLD = 5;
@@ -8,3 +11,5 @@ class Input {
     bool getUp(), getDown(), getLeft(), getRight();
     bool getA(), getB(), getX(), getY();
 };
+
+#endif
