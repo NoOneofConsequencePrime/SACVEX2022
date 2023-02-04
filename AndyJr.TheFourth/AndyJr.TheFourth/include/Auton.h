@@ -3,13 +3,13 @@
 
 class Auton {
   private:
-    const double DIST_UC_RANGE = 3.0, DIST_RATE_ERROR = 0.0;// +/- cm
+    const double DIST_UC_RANGE = 0.5, DIST_RATE_ERROR = 1;// +/- cm
     const double ROT_UC_RANGE = 0.5, ROT_RATE_ERROR = 0.1;// +/- degs
-    const double MKP = 0.0, MKI = 0.0, MKD = 0.0;
+    const double MKP = 0.03, MKI = 0.0, MKD = 0.0;
     const double RKP = 0.022, RKI = 0.0, RKD = 0.0;
     double prevTime, elapsedTime;
     double lastError, cumError;
-    bool chkDistRange(), chkRotRange(double target);// continue pid?
+    bool chkDistRange(double target), chkRotRange(double target);// continue pid?
   
   public:
     double getPID(double input, double setPoint, double KP, double KI, double KD);// wtv (based on input)

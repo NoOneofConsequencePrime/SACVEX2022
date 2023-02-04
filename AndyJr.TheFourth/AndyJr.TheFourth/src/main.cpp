@@ -28,19 +28,6 @@ void competition_initialize() {
 }
 
 void autonomous() {
-	print(1, "running...");
-	auton.pidMove(90, 0, 1.0);
-	print(2, "DONE!");
-
-	// while (1) {
-	// 	tmpRPM = 250;
-	// 	commisso.spinIntake(0.5);
-	// 	delay(10);
-	// }
-	// uint32_t a = millis();
-	// while (millis()-a < 5000) {
-	// 	commisso.spinShooter(200);
-	// }
 }
 
 void opcontrol() {
@@ -67,8 +54,8 @@ void opcontrol() {
 
 		lcd::clear();
 		// lcd::print(1, "%.2f", tmp.getRot());
-		// lcd::print(2, "%.2f", tmp.getYEncoderDist());
-		// lcd::print(3, "%.2f", tmp.getXEncoderDist());
+		lcd::print(2, "%.2f", tmpSensor.getYEncoderDist());
+		lcd::print(3, "%.2f", tmpSensor.getXEncoderDist());
 		// lcd::print(4, "%d", Ct1.getL1());
 		// lcd::print(5, "%.2f", commisso.getShooterRPM());
 

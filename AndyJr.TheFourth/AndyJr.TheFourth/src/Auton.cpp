@@ -9,8 +9,10 @@
 Sensor prezi;
 MecDrive mec;
 
-bool Auton::chkDistRange() {
-    return false;
+bool Auton::chkDistRange(double target) {
+    bool ucRange = abs(target-prezi.getDisplacement()) < DIST_UC_RANGE;
+    bool rateRange = abs(target-prezi.getDisplacement()-lastError)/elapsedTime < DIST_RATE_ERROR;
+    return ucRange && rateRange;
 }
 bool Auton::chkRotRange(double target) {
     bool ucRange = abs(target-prezi.getRot()) < ROT_UC_RANGE;
@@ -37,15 +39,18 @@ double Auton::getPID(double input, double setPoint, double KP, double KI, double
 void Auton::pidMove(double dist, double dir, double spd) {
     double baseRot = prezi.getRot(); cumError = 0;
     prezi.resetEncoders();
-    while (1) {
-        double tmpPID = getPID(prezi.getDisplacement(), dist, MKP, MKI, MKD);
+    while (!chkDistRange(dist)) {
+        mec.move(dir, min(getPID(prezi.getDisplacement(), dist, MKP, MKI, MKD), spd));
         delay(10);
     }
+
+    mec.set_brake();
+    mec.brakeAll();
 }
 void Auton::pidTurn(double target, double spd) {
     double baseRot = prezi.getRot(); cumError = 0;
     while (!chkRotRange(target)) {
-        mec.turn(getPID(prezi.getRot()-baseRot, target, RKP, RKI, RKD));
+        mec.turn(min(getPID(prezi.getRot()-baseRot, target, RKP, RKI, RKD), spd));
         delay(10);
     }
 
