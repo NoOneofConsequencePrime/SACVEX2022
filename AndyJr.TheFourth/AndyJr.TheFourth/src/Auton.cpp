@@ -38,5 +38,5 @@ void Auton::pidMove(double dist, double dir, double spd) {
 }
 void Auton::pidTurn(double target, double spd) {
     prezi.resetGyro(); cumError = 0;
-    // while ()
+    
 }

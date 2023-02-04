@@ -52,7 +52,7 @@ void MecDrive::turn(double spd) {
     RB.move_velocity(-vel);
 }
 void MecDrive::move(double dir, double spd) {
-    double rad = dir*3.14/360.0;
+    double rad = dir*M_PI/180.0;
     double velX = sin(rad), velY = cos(rad);
 
     double normalCorrection = 1.0 / max(abs(velX), abs(velY));

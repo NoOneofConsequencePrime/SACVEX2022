@@ -9,10 +9,14 @@ class Commisso {
   
   public:
     void spinShooter(double rpm);// rpm
-    void spinIntake(double spd), spinRoller(double spd);// -1.0 ~ 1.0
+    void spinIntake(double spd);// -1.0 ~ 1.0
     void extendIndexer(bool pneuState);// true(load disc) false(extend)
     void extendExpansion(bool pneuState);// false(resting) true(release)
     double getShooterRPM();
+    
 };
+
+void tracking_commisso(void* ignore);
+void shoot(double rpm), intake(double spd), index(bool pneuState), expand(bool pneuState);
 
 #endif

@@ -2,6 +2,11 @@
 #include "robot-config.h"
 #include "Commisso.h"
 
+double taskRPM;// rpm
+double taskIntake;// spd -1.0 ~ 1.0
+bool taskIndexer;
+bool taskExpansion;
+
 void Commisso::spinIntake(double spd) {
     double volt = spd*127;
     intakeA.move_velocity(volt); intakeB.move_velocity(volt);
@@ -34,4 +39,29 @@ void Commisso::spinShooter(double rpm) {
     prevTime = curTime;
 
     leftShooter.move(out); rightShooter.move(out);
+}
+
+void tracking_commisso(void* ignore) {
+    Commisso tmp;
+    while (1) {
+        tmp.spinShooter(taskRPM);
+        tmp.spinIntake(taskIntake);
+        tmp.extendIndexer(taskIndexer);
+        tmp.extendExpansion(taskExpansion);
+
+        delay(10);
+    }
+}
+
+void shoot(double rpm) {
+    taskRPM = rpm;
+}
+void intake(double spd) {
+    taskIntake = spd;
+}
+void index(bool pneuState) {
+    taskIndexer = pneuState;
+}
+void expand(bool pneuState) {
+    taskExpansion = pneuState;
 }
