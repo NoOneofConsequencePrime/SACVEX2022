@@ -12,7 +12,7 @@ double driveSpd = 1.0;// -1.0 ~ 1.0
 // Init objects
 Input Ct1;
 MecDrive mecDrive;
-Sensor tmp;
+Sensor tmpSensor;
 Auton auton;
 
 double tmpRPM = 0;
@@ -22,13 +22,16 @@ void initialize() {
 	Task shooter_task(tracking_commisso);
 }
 
-void disabled() {}
-void competition_initialize() {}
+void disabled() {
+}
+void competition_initialize() {
+}
 
 void autonomous() {
-	shoot(200);
-	delay(3000);
-	shoot(0);
+	print(1, "running...");
+	auton.pidMove(90, 0, 1.0);
+	print(2, "DONE!");
+
 	// while (1) {
 	// 	tmpRPM = 250;
 	// 	commisso.spinIntake(0.5);
