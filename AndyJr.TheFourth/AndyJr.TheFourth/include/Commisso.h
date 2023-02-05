@@ -3,9 +3,12 @@
 
 class Commisso {
   private:
-    const double KP = 0.6, KD = 0.2, BASE_MOTOR_POWER = 20;// volt
+    const double KP = 0.2, KD = 0.05, BASE_MOTOR_POWER = 20;
+    // const double KP = 0.6, KI = 0.17, KD = 0;
+    // const double KP = 0.2, KI = 0.23, KD = 0;
+    // const double KP = 0.3;
     unsigned int prevTime, elapsedTime;
-    double lastError;
+    double lastError, cumError;
   
   public:
     void spinShooter(double rpm);// rpm
@@ -13,10 +16,12 @@ class Commisso {
     void extendIndexer(bool pneuState);// true(load disc) false(extend)
     void extendExpansion(bool pneuState);// false(resting) true(release)
     double getShooterRPM();
-    
 };
 
 void tracking_commisso(void* ignore);
-void shoot(double rpm), intake(double spd), index(bool pneuState), expand(bool pneuState);
+void shoot(double rpm);
+void intake(double spd);
+void index(bool pneuState);
+void expand(bool pneuState);
 
 #endif

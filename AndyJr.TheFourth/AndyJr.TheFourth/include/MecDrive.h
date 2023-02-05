@@ -11,4 +11,8 @@ class MecDrive {
     void move(double dir, double spd);// degs, -1.0 ~ 1.0
 };
 
+void tracking_mec(void* ignore);
+void mecTurn(double spd);
+void mecMove(double dir, double spd);
+
 #endif

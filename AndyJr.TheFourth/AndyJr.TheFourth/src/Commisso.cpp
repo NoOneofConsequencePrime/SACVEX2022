@@ -23,16 +23,20 @@ double Commisso::getShooterRPM() {
 void Commisso::spinShooter(double rpm) {
     if (rpm == 0) {
         leftShooter.move(0); rightShooter.move(0);
+        cumError = 0; prevTime = millis();
         return;
     }
 
     unsigned int curTime = millis();
-    elapsedTime = curTime-prevTime;
+    elapsedTime = curTime - prevTime;
 
     double input = getShooterRPM();
     double error = rpm - input;
+    cumError += error*elapsedTime/1000;
     double rateError = (error-lastError)/elapsedTime;
 
+    // double out = KP*error + KI*cumError + KD*rateError;
+    // double out = KP*error + input*0.25;
     double out = KP*error + KD*rateError + input*127/600+BASE_MOTOR_POWER;
 
     lastError = error;
@@ -48,6 +52,8 @@ void tracking_commisso(void* ignore) {
         tmp.spinIntake(taskIntake);
         tmp.extendIndexer(taskIndexer);
         tmp.extendExpansion(taskExpansion);
+        print(1, "%.1f", tmp.getShooterRPM());
+        printf("%.1f\n", tmp.getShooterRPM());
 
         delay(10);
     }

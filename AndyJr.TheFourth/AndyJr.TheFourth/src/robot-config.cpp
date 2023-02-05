@@ -7,7 +7,7 @@ Motor LF(17, E_MOTOR_GEAR_200, true), LB(14, E_MOTOR_GEAR_200, true), RF(16, E_M
 
 // Triport
 ADIDigitalOut indexer(1, true);
-ADIDigitalOut expansion(0, false);
+ADIDigitalOut expansion(2, false);
 
 // Other
 Controller master(CONTROLLER_MASTER);

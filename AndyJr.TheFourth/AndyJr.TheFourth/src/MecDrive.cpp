@@ -2,6 +2,9 @@
 #include "robot-config.h"
 #include "MecDrive.h"
 
+double turnSpd;// -1.0 ~ 1.0
+double moveDir, moveSpd;// degs, -1.0 ~ 1.0
+
 void MecDrive::set_coast() {
     LF.set_brake_mode(MOTOR_BRAKE_COAST);
     LB.set_brake_mode(MOTOR_BRAKE_COAST);
@@ -68,4 +71,26 @@ void MecDrive::move(double dir, double spd) {
     LB.move_velocity(LBVel);
     RF.move_velocity(RFVel);
     RB.move_velocity(RBVel);
+    
+    // LF.move(LFVel*127/200);
+    // LB.move(LBVel*127/200);
+    // RF.move(RFVel*127/200);
+    // RB.move(RBVel*127/200);
+}
+
+void tracking_mec(void* ignore) {
+    MecDrive tmp;
+    while (1) {
+        if (moveSpd != 0) tmp.move(moveDir, moveSpd);
+        else if (turnSpd != 0) tmp.turn(turnSpd);
+
+        delay(10);
+    }
+}
+
+void mecTurn(double spd) {
+    turnSpd == spd;
+}
+void mecMove(double dir, double spd) {
+    moveDir = dir; moveSpd = spd;
 }
