@@ -36,15 +36,15 @@ void MecDrive::drive(double joyY, double joyX, double rotX, double spd) {
     }
     double ratioCorrection = max(abs(joyY)+abs(joyX)+abs(rotX), 127.0);
 
-    double LFVel = (joyY+joyX+rotX) / ratioCorrection * spd*200.0;
-    double LBVel = (joyY-joyX+rotX) / ratioCorrection * spd*200.0;
-    double RFVel = (joyY-joyX-rotX) / ratioCorrection * spd*200.0;
-    double RBVel = (joyY+joyX-rotX) / ratioCorrection * spd*200.0;
+    double LFVel = (joyY+joyX+rotX) / ratioCorrection * spd*127.0;
+    double LBVel = (joyY-joyX+rotX) / ratioCorrection * spd*127.0;
+    double RFVel = (joyY-joyX-rotX) / ratioCorrection * spd*127.0;
+    double RBVel = (joyY+joyX-rotX) / ratioCorrection * spd*127.0;
 
-    LF.move_velocity(LFVel);
-    LB.move_velocity(LBVel);
-    RF.move_velocity(RFVel);
-    RB.move_velocity(RBVel);
+    LF.move(LFVel);
+    LB.move(LBVel);
+    RF.move(RFVel);
+    RB.move(RBVel);
 }
 void MecDrive::turn(double spd) {
     double vel = spd*200.0;

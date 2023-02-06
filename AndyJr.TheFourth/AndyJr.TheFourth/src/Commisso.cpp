@@ -9,7 +9,7 @@ bool taskExpansion;
 
 void Commisso::spinIntake(double spd) {
     double volt = spd*127;
-    intakeA.move_velocity(volt); intakeB.move_velocity(volt);
+    intakeA.move(volt); intakeB.move(volt);
 }
 void Commisso::extendIndexer(bool pneuState) {
     indexer.set_value(!pneuState);

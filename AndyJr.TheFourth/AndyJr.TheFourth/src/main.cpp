@@ -28,54 +28,98 @@ void disabled() {
 void competition_initialize() {
 }
 
-void autonomous() {
+void leftField() {
 	mecMove(0, 1.0);
 	intake(-1.0);
 	delay(300);
 	mecMove(0, 0);
 	intake(0.0);
 	auton.pidMove(10, 180, 1.0);
-	auton.pidTurn(-7.6, 1.0);
+	auton.pidTurn(-7.8, 1.0);
 	
-	shoot(450);
+	shoot(440);
 	delay(3000);
 	index(true);
 	delay(500);
 	index(false);
-	shoot(445);
+	shoot(430);
 	delay(2000);
 	index(true);
 	delay(500);
 	index(false);
 	shoot(0);
+}
 
-	/*auton.pidMove(60, 0, 1.0);
+void rightField() {
+	auton.pidMove(50, 0, 1.0);
 	auton.pidTurn(90, 1.0);
 	mecMove(0, 0.3);
 	intake(-1.0);
-	delay(1000);
+	delay(700);
 	intake(0.0);
 	mecMove(0, 0.0);
 	auton.pidMove(10, 180, 1.0);
 	intake(0);
-	auton.pidTurn(13, 1.0);
+	auton.pidTurn(10.2, 1.0);
 
-	shoot(460);
+	shoot(410);
 	delay(3000);
 	index(true);
 	delay(500);
 	index(false);
-	shoot(450);
-	delay(2000);
+	// shoot(390);
+	delay(3000);
 	index(true);
 	delay(500);
 	index(false);
-	shoot(0);*/
+	shoot(0);
+}
+
+void autonSkills() {
+	mecMove(0, 1.0);
+	intake(1.0);
+	delay(650);
+	mecMove(0, 0);
+	intake(0.0);
+	auton.pidMove(10, 180, 1.0);
+	auton.pidTurn(87, 1.0);
+	
+	shoot(405);
+	delay(3000);
+	index(true);
+	delay(500);
+	index(false);
+	shoot(395);
+	delay(3000);
+	index(true);
+	delay(500);
+	index(false);
+	shoot(0);
+
+	auton.pidTurn(-87, 1.0);
+	auton.pidMove(45, 180, 1.0);
+	auton.pidTurn(90, 1.0);
+	mecMove(0, 0.4);
+	intake(1.0);
+	delay(2050);
+	intake(0.0);
+	mecMove(0, 0.0);
+	auton.pidMove(10, 180, 1.0);
+	auton.pidTurn(-90, 1.0);
+	auton.pidMove(30, 0, 1.0);
+	auton.pidTurn(45, 1.0);
+	expand(true);
+}
+
+void autonomous() {
+	// leftField();
+	rightField();
+	// autonSkills();
 }
 
 void opcontrol() {
-	const double FAST_RPM = 420, SLOW_RPM = 350;
-	double shooterRPM = FAST_RPM;
+	const double FAST_RPM = 390, SLOW_RPM = 320;
+	double shooterRPM = SLOW_RPM;
 
 	while (true) {
 		// Mecanum Drive
