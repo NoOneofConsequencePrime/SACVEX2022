@@ -7,6 +7,29 @@
 // BL                   motor         8               
 // BR                   motor         4               
 // ML                   motor         17              
+// MR                   motor         18              
+// Roller               motor         1               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// FL                   motor         7               
+// FR                   motor         11              
+// BL                   motor         8               
+// BR                   motor         4               
+// ML                   motor         17              
+// MR                   motor         18              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// FL                   motor         7               
+// FR                   motor         11              
+// BL                   motor         8               
+// BR                   motor         4               
+// ML                   motor         17              
 // ---- END VEXCODE CONFIGURED DEVICES ----
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
@@ -89,35 +112,49 @@ void autonomous(void) {
 /*                                                                           */
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
-void fbControl(){
-  int y = Controller1.Axis3.position(pct);
+void fbControl(int y){
     if ((y > 10) || (y < -10)) {
       FL.spin(forward, y, pct);
       FR.spin(forward, y, pct);
       BL.spin(forward, y, pct);
       BR.spin(forward, y, pct);
       ML.spin(forward, y, pct);
+      MR.spin(forward, y, pct);
     }
 }
 
-void lrControl(){
-  int x = Controller1.Axis4.position(pct);
-    if ((x > 10) || (x < -10)) {
-      FL.spin(forward, x, pct);
-      FR.spin(forward, -x, pct);
-      BL.spin(forward, -x, pct);
-      BR.spin(forward, x, pct);
-    } 
-}
+// void lrControl(){
+//   int x = Controller1.Axis4.position(pct);
+//     if ((x > 10) || (x < -10)) {
+//       FL.spin(forward, x, pct);
+//       FR.spin(forward, -x, pct);
+//       BL.spin(forward, -x, pct);
+//       BR.spin(forward, x, pct);
+//     } 
+// }
 
-void lrTurn(){
-  int z = Controller1.Axis1.position(pct);
+void lrTurn(int z){
     if ((z > 10) || (z < -10)){
       FL.spin(forward, z, pct);
       FR.spin(forward, -z, pct);
       BL.spin(forward, z, pct);
       BR.spin(forward, -z, pct);
+      ML.spin(forward, z, pct);
+      MR.spin(forward, -z, pct);
     } 
+}
+
+void rollerFf(){
+  Roller.spin(forward, 100, pct);
+}
+void rollerBf(){
+  Roller.spin(forward, -100, pct);
+}
+void rollerFs(){
+  Roller.spin(forward, 20, pct);
+}
+void rollerBs(){
+  Roller.spin(forward, -20, pct);
 }
 
 
@@ -126,31 +163,44 @@ void usercontrol(void) {
   // User control code here, inside the loop
   while (1) {
     int y = Controller1.Axis3.position(pct);
-    if ((y > 10) || (y < -10)) {
-      FL.spin(forward, y, pct);
-      FR.spin(forward, y, pct);
-      BL.spin(forward, y, pct);
-      BR.spin(forward, y, pct);
-    }
-    int x = Controller1.Axis4.position(pct);
-    if ((x > 10) || (x < -10)) {
-      FL.spin(forward, x, pct);
-      FR.spin(forward, -x, pct);
-      BL.spin(forward, -x, pct);
-      BR.spin(forward, x, pct);
-    } 
-    int z = Controller1.Axis1.position(pct);
-    if ((z > 10) || (z < -10)){
-      FL.spin(forward, z, pct);
-      FR.spin(forward, -z, pct);
-      BL.spin(forward, z, pct);
-      BR.spin(forward, -z, pct);
-    } 
-    if(z == 0 && y == 0 && x == 0){
+    int x = Controller1.Axis1.position(pct);
+    fbControl(y);
+    lrTurn(x);
+
+    Controller1.ButtonL1.pressed(rollerBf);
+    Controller1.ButtonL2.pressed(rollerBs);
+    Controller1.ButtonR1.pressed(rollerFf);
+    Controller1.ButtonR2.pressed(rollerFs);
+
+    // int y = Controller1.Axis3.position(pct);
+    // if ((y > 10) || (y < -10)) {
+    //   FL.spin(forward, y, pct);
+    //   FR.spin(forward, y, pct);
+    //   BL.spin(forward, y, pct);
+    //   BR.spin(forward, y, pct);
+    // }
+    // int x = Controller1.Axis4.position(pct);
+    // if ((x > 10) || (x < -10)) {
+    //   FL.spin(forward, x, pct);
+    //   FR.spin(forward, -x, pct);
+    //   BL.spin(forward, -x, pct);
+    //   BR.spin(forward, x, pct);
+    // } 
+    // int z = Controller1.Axis1.position(pct);
+    // if ((z > 10) || (z < -10)){
+    //   FL.spin(forward, z, pct);
+    //   FR.spin(forward, -z, pct);
+    //   BL.spin(forward, z, pct);
+    //   BR.spin(forward, -z, pct);
+    // } 
+    if(x == 0 && y == 0){
     FL.spin(forward, 0, pct);
     FR.spin(forward, 0, pct);
     BL.spin(forward, 0, pct);
     BR.spin(forward, 0, pct);
+    ML.spin(forward, 0, pct);
+    MR.spin(forward, 0, pct);
+    }
   } 
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo

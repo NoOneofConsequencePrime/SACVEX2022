@@ -14,6 +14,8 @@ motor FR = motor(PORT11, ratio18_1, true);
 motor BL = motor(PORT8, ratio18_1, false);
 motor BR = motor(PORT4, ratio18_1, true);
 motor ML = motor(PORT17, ratio18_1, false);
+motor MR = motor(PORT18, ratio18_1, false);
+motor Roller = motor(PORT1, ratio18_1, false);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
