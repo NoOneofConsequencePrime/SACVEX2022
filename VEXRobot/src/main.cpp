@@ -8,6 +8,90 @@
 // BR                   motor         4               
 // ML                   motor         18              
 // MR                   motor         5               
+// Roller               motor         20              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// FL                   motor         7               
+// FR                   motor         11              
+// BL                   motor         8               
+// BR                   motor         4               
+// ML                   motor         18              
+// MR                   motor         5               
+// Roller               motor         20              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// FL                   motor         7               
+// FR                   motor         11              
+// BL                   motor         8               
+// BR                   motor         4               
+// ML                   motor         18              
+// MR                   motor         5               
+// Roller               motor         20              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// FL                   motor         7               
+// FR                   motor         11              
+// BL                   motor         8               
+// BR                   motor         4               
+// ML                   motor         18              
+// MR                   motor         5               
+// Roller               motor         20              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// FL                   motor         7               
+// FR                   motor         11              
+// BL                   motor         8               
+// BR                   motor         4               
+// ML                   motor         18              
+// MR                   motor         5               
+// Roller               motor         20              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// FL                   motor         7               
+// FR                   motor         11              
+// BL                   motor         8               
+// BR                   motor         4               
+// ML                   motor         18              
+// MR                   motor         5               
+// Roller               motor         20              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// FL                   motor         7               
+// FR                   motor         11              
+// BL                   motor         8               
+// BR                   motor         4               
+// ML                   motor         18              
+// MR                   motor         5               
+// Roller               motor         20              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// FL                   motor         7               
+// FR                   motor         11              
+// BL                   motor         8               
+// BR                   motor         4               
+// ML                   motor         18              
+// MR                   motor         5               
 // Roller               motor         1               
 // ---- END VEXCODE CONFIGURED DEVICES ----
 // ---- START VEXCODE CONFIGURED DEVICES ----
@@ -175,10 +259,13 @@ void rollerBf(){
   Roller.spin(forward, -100, pct);
 }
 void rollerFs(){
-  Roller.spin(forward, 20, pct);
+  Roller.spin(forward, 35, pct);
 }
 void rollerBs(){
-  Roller.spin(forward, -20, pct);
+  Roller.spin(forward, -35, pct);
+}
+void rollerS(){
+  Roller.spin(forward, 0, pct);
 }
 
 
@@ -194,14 +281,16 @@ void usercontrol(void) {
     if (Controller1.ButtonL1.pressing()) {
       rollerBf();
     }
-    if (Controller1.ButtonL2.pressing()) {
+    else if (Controller1.ButtonL2.pressing()) {
       rollerBs();
     }
-    if (Controller1.ButtonR1.pressing()) {
+    else if (Controller1.ButtonR1.pressing()) {
       rollerFf();
     }
-    if (Controller1.ButtonR2.pressing()) {
+    else if (Controller1.ButtonR2.pressing()) {
       rollerFs();
+    } else{
+      rollerS();
     }
     // Controller1.ButtonL1.pressed(rollerBf);
     // Controller1.ButtonL2.pressed(rollerBs);
