@@ -6,6 +6,30 @@
 // FR                   motor         11              
 // BL                   motor         8               
 // BR                   motor         4               
+// ML                   motor         18              
+// MR                   motor         5               
+// Roller               motor         1               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// FL                   motor         7               
+// FR                   motor         11              
+// BL                   motor         8               
+// BR                   motor         4               
+// ML                   motor         17              
+// MR                   motor         5               
+// Roller               motor         1               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// FL                   motor         7               
+// FR                   motor         11              
+// BL                   motor         8               
+// BR                   motor         4               
 // ML                   motor         17              
 // MR                   motor         18              
 // Roller               motor         1               
@@ -167,10 +191,22 @@ void usercontrol(void) {
     fbControl(y);
     lrTurn(x);
 
-    Controller1.ButtonL1.pressed(rollerBf);
-    Controller1.ButtonL2.pressed(rollerBs);
-    Controller1.ButtonR1.pressed(rollerFf);
-    Controller1.ButtonR2.pressed(rollerFs);
+    if (Controller1.ButtonL1.pressing()) {
+      rollerBf();
+    }
+    if (Controller1.ButtonL2.pressing()) {
+      rollerBs();
+    }
+    if (Controller1.ButtonR1.pressing()) {
+      rollerFf();
+    }
+    if (Controller1.ButtonR2.pressing()) {
+      rollerFs();
+    }
+    // Controller1.ButtonL1.pressed(rollerBf);
+    // Controller1.ButtonL2.pressed(rollerBs);
+    // Controller1.ButtonR1.pressed(rollerFf);
+    // Controller1.ButtonR2.pressed(rollerFs);
 
     // int y = Controller1.Axis3.position(pct);
     // if ((y > 10) || (y < -10)) {
@@ -200,8 +236,7 @@ void usercontrol(void) {
     BR.spin(forward, 0, pct);
     ML.spin(forward, 0, pct);
     MR.spin(forward, 0, pct);
-    }
-  } 
+    } 
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
     // values based on feedback from the joysticks.
