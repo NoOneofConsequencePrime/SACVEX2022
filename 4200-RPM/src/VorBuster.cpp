@@ -10,6 +10,6 @@ void VorBuster::spinFeeder(double spd) {
   Feeder.spin(fwd, spd*100, pct);
 }
 void VorBuster::spinShooter(double spd) {
-  ShooterL.spin(fwd, spd, rpm);
-  ShooterR.spin(fwd, spd, rpm);
+  Shooter.spin(fwd, spd, rpm);
+  Shooter1.spin(fwd, spd, rpm);
 }

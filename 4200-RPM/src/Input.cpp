@@ -61,7 +61,7 @@ bool Input::getButtonX() {
   return buttonX;
 }
 bool Input::getButtonY() {
-  return buttonX;
+  return buttonY;
 }
 bool Input::getButtonUp() {
   return buttonUp;
