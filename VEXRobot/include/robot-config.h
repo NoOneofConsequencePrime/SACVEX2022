@@ -8,6 +8,7 @@ extern motor FL;
 extern motor FR;
 extern motor BL;
 extern motor BR;
+extern motor ML;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

@@ -1,3 +1,23 @@
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// FL                   motor         7               
+// FR                   motor         11              
+// BL                   motor         8               
+// BR                   motor         4               
+// ML                   motor         17              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// FL                   motor         7               
+// FR                   motor         11              
+// BL                   motor         8               
+// BR                   motor         4               
+// Motor17              motor         17              
+// ---- END VEXCODE CONFIGURED DEVICES ----
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
@@ -71,17 +91,18 @@ void autonomous(void) {
 /*---------------------------------------------------------------------------*/
 void fbControl(){
   int y = Controller1.Axis3.position(pct);
-    if ((y > 0) || (y < 0)) {
+    if ((y > 10) || (y < -10)) {
       FL.spin(forward, y, pct);
       FR.spin(forward, y, pct);
       BL.spin(forward, y, pct);
       BR.spin(forward, y, pct);
+      ML.spin(forward, y, pct);
     }
 }
 
 void lrControl(){
   int x = Controller1.Axis4.position(pct);
-    if ((x > 0) || (x < 0)) {
+    if ((x > 10) || (x < -10)) {
       FL.spin(forward, x, pct);
       FR.spin(forward, -x, pct);
       BL.spin(forward, -x, pct);
@@ -105,14 +126,14 @@ void usercontrol(void) {
   // User control code here, inside the loop
   while (1) {
     int y = Controller1.Axis3.position(pct);
-    if ((y > 0) || (y < 0)) {
+    if ((y > 10) || (y < -10)) {
       FL.spin(forward, y, pct);
       FR.spin(forward, y, pct);
       BL.spin(forward, y, pct);
       BR.spin(forward, y, pct);
     }
     int x = Controller1.Axis4.position(pct);
-    if ((x > 0) || (x < 0)) {
+    if ((x > 10) || (x < -10)) {
       FL.spin(forward, x, pct);
       FR.spin(forward, -x, pct);
       BL.spin(forward, -x, pct);
