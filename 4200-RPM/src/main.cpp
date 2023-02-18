@@ -14,287 +14,6 @@
 // Feed                 digital_out   G               
 // Shooter1             motor         3               
 // ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// Shooter              motor         4               
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      14              
-// Feed                 digital_out   G               
-// Shooter1             motor         3               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// Shooter              motor         4               
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      14              
-// Feed                 digital_out   G               
-// Shooter1             motor         3               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// Shooter              motor         4               
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      14              
-// Feed                 digital_out   G               
-// Shooter1             motor         3               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// Shooter              motor         4               
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      14              
-// Feed                 digital_out   G               
-// Shooter1             motor         3               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// Shooter              motor         4               
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      14              
-// Feed                 digital_out   G               
-// Shooter1             motor         3               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// Shooter              motor         4               
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      14              
-// Feed                 digital_out   G               
-// Shooter1             motor         3               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// Shooter              motor         4               
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      14              
-// Feed                 digital_out   G               
-// Shooter1             motor         3               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// Shooter              motor         4               
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      14              
-// Feed                 digital_out   G               
-// Shooter1             motor         3               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// Shooter              motor         4               
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      14              
-// Feed                 digital_out   G               
-// Motor3               motor         3               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// Shooter              motor         4               
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      14              
-// Feed                 digital_out   G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// Shooter              motor         4               
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      14              
-// Feed                 digital_out   G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// ShooterR             motor         15              
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      14              
-// Feed                 digital_out   G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// ShooterR             motor         15              
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      4               
-// Feed                 digital_out   G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// ShooterL             motor         14              
-// ShooterR             motor         15              
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      4               
-// Feed                 digital_out   G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// ShooterL             motor         14              
-// ShooterR             motor         15              
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      4               
-// Feed                 digital_out   G               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// ShooterL             motor         14              
-// ShooterR             motor         15              
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      4               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// ShooterL             motor         14              
-// ShooterR             motor         15              
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      4               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// Intake               motor         5               
-// RF                   motor         6               
-// LF                   motor         7               
-// Feeder               motor         10              
-// ShooterL             motor         14              
-// ShooterR             motor         15              
-// RB                   motor         20              
-// LB                   motor         21              
-// Expansion            digital_out   H               
-// Gyro                 inertial      4               
-// ---- END VEXCODE CONFIGURED DEVICES ----
 #include <vex.h>
 #include "Input.h"
 #include "ArcadeDrive.h"
@@ -351,26 +70,27 @@ void pre_auton(void) {
 }
 
 void autonomous(void) {
-  shooterRPM = 428;
-  Feed.set(1);
-  //right side auton
-  auton.moveFwd(5, 0.7);
-  auton.turn(90, 0.7);
-  auton.moveFwd(70, 0.7);
-  auton.turn(90, 0.7);
-  auton.moveFwd(7, 0.7);
-  // vorBuster.spinIntake(1.0);
-  vorBuster.spinIntake(-1.0);
-  wait(500, msec);
-  vorBuster.spinIntake(0);
-  auton.moveFwd(-5, 0.7);
-  auton.turn(5, 0.7);
+  shooterRPM = 600;
+  vorBuster.KP = 0.4;
+  // Feed.set(1);
+  // //right side auton
+  // auton.moveFwd(5, 0.7);
+  // auton.turn(90, 0.7);
+  // auton.moveFwd(70, 0.7);
+  // auton.turn(90, 0.7);
+  // auton.moveFwd(7, 0.7);
+  // // vorBuster.spinIntake(1.0);
+  // vorBuster.spinIntake(-1.0);
+  // wait(500, msec);
+  // vorBuster.spinIntake(0);
+  // auton.moveFwd(-5, 0.7);
+  // auton.turn(5, 0.7);
   vorBuster.spinShooter(shooterRPM);
   wait(3000, msec);
   for (int i=0; i <= 1; i++) {
-    Feed.set(0);
-    wait(500, msec);
-    Feed.set(1);
+    vorBuster.spinFeeder(1);
+    wait(150, msec);
+    vorBuster.spinFeeder(0);
     wait(1000, msec);
   }
   vorBuster.spinShooter(0);
@@ -389,7 +109,8 @@ void autonomous(void) {
 }
 
 void usercontrol(void) {
-  shooterRPM = 200;
+  shooterRPM = 600;
+  vorBuster.KP = 1.2;
   while (1) {
     // Get Input
     Ct1.setChannels(JoystickDeadzone); Ct1.setButtons();
@@ -406,10 +127,8 @@ void usercontrol(void) {
     if (Ct1.getRightLowTrig()) vorBuster.spinFeeder(1);
     else vorBuster.spinFeeder(0);
 
-    if (Ct1.getButtonX() == true) shooterRPM = 300; // shooterRPM = 200;
-    if (Ct1.getButtonA() == true) shooterRPM = 325;
-    if (Ct1.getButtonB() == true) shooterRPM = 400;
-    if (Ct1.getButtonY() == true) shooterRPM = 600;
+    if (Ct1.getButtonX() == true) shooterRPM = 500; // shooterRPM = 200;
+    if (Ct1.getButtonA() == true) shooterRPM = 600;
 
     if (Ct1.getRightHighTrig()) vorBuster.spinShooter(shooterRPM);
     else if (Ct1.getButtonDown()) vorBuster.spinShooter(-30);
