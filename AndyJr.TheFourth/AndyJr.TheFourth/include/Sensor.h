@@ -7,10 +7,9 @@ class Sensor {
   
   public:
     void resetEncoders();
-    double getXEncoderDist(), getYEncoderDist();// cm (*2)
+    double getEncoderDist();// cm
     // void resetGyro();
     double getRot();
-    double getDisplacement();
 };
 
 #endif

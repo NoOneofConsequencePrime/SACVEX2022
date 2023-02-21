@@ -2,7 +2,7 @@
 #define ROBOT_CONFIG_H
 
 // Motors
-extern Motor leftShooter, rightShooter;
+extern Motor shooter;
 extern Motor intakeA, intakeB;
 extern Motor LF, LB, RF, RB;
 
@@ -12,7 +12,7 @@ extern ADIDigitalOut expansion;
 
 // Other
 extern Controller master;
-extern ADIEncoder xEncoder, yEncoder;
+extern ADIEncoder encoder;
 extern Imu gyro;
 
 #endif

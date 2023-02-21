@@ -1,16 +1,16 @@
 #include "main.h"
 #include "robot-config.h"
 #include "Commisso.h"
-#include "MecDrive.h"
+#include "Drive.h"
 #include "Sensor.h"
 #include "Auton.h"
 
 // Init objects
 Sensor prezi;
-MecDrive mec;
+Drive tmpDrive;
 
 bool Auton::chkDistRange(double target) {
-    bool ucRange = abs(target-prezi.getDisplacement()) < DIST_UC_RANGE;
+    bool ucRange = abs(target-prezi.getEncoderDist()) < DIST_UC_RANGE;
     // bool rateRange = abs(target-prezi.getDisplacement()-lastError)/elapsedTime < DIST_RATE_ERROR;
     // return ucRange && rateRange;
     return ucRange;
@@ -38,28 +38,27 @@ double Auton::getPID(double input, double setPoint, double KP, double KI, double
 
     return out;
 }
-void Auton::pidMove(double dist, double dir, double spd) {
+void Auton::pidMove(double dist, double spd) {
     double baseRot = prezi.getRot(); cumError = 0;
     prezi.resetEncoders();
     while (!chkDistRange(dist)) {
-        mec.move(dir, getPID(prezi.getDisplacement(), dist, MKP, MKI, MKD));
+        tmpDrive.moveFwd(getPID(prezi.getEncoderDist(), dist, MKP, MKI, MKD));
         // double tmpPID = getPID(prezi.getDisplacement(), dist, MKP, MKI, MKD);
         // if (tmpPID > 0) mec.move(dir, min(tmpPID, spd));
         // else if (tmpPID < 0) mec.move(180, min(tmpPID, spd));
         delay(10);
     }
 
-    mec.set_brake();
-    mec.brakeAll();
+    tmpDrive.set_brake();
+    tmpDrive.brakeAll();
 }
 void Auton::pidTurn(double target, double spd) {
     double baseRot = prezi.getRot(); cumError = 0;
     while (!chkRotRange(target+baseRot)) {
-        // mec.turn(min(getPID(prezi.getRot()-baseRot, target, RKP, RKI, RKD), spd));
-        mec.turn(getPID(prezi.getRot()-baseRot, target, RKP, RKI, RKD));
+        tmpDrive.turn(getPID(prezi.getRot()-baseRot, target, RKP, RKI, RKD));
         delay(10);
     }
 
-    mec.set_brake();
-    mec.brakeAll();
+    tmpDrive.set_brake();
+    tmpDrive.brakeAll();
 }

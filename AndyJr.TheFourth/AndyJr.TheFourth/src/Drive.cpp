@@ -1,52 +1,52 @@
 #include "main.h"
 #include "robot-config.h"
-#include "MecDrive.h"
+#include "Drive.h"
 
 double turnSpd;// -1.0 ~ 1.0
-double moveDir, moveSpd;// degs, -1.0 ~ 1.0
+double moveSpd;// -1.0 ~ 1.0
 
-void MecDrive::set_coast() {
+void Drive::set_coast() {
     LF.set_brake_mode(MOTOR_BRAKE_COAST);
     LB.set_brake_mode(MOTOR_BRAKE_COAST);
     RF.set_brake_mode(MOTOR_BRAKE_COAST);
     RB.set_brake_mode(MOTOR_BRAKE_COAST);
 }
-void MecDrive::set_brake() {
+void Drive::set_brake() {
     LF.set_brake_mode(MOTOR_BRAKE_BRAKE);
     LB.set_brake_mode(MOTOR_BRAKE_BRAKE);
     RF.set_brake_mode(MOTOR_BRAKE_BRAKE);
     RB.set_brake_mode(MOTOR_BRAKE_BRAKE);
 }
-void MecDrive::set_hold() {
+void Drive::set_hold() {
     LF.set_brake_mode(MOTOR_BRAKE_HOLD);
     LB.set_brake_mode(MOTOR_BRAKE_HOLD);
     RF.set_brake_mode(MOTOR_BRAKE_HOLD);
     RB.set_brake_mode(MOTOR_BRAKE_HOLD);
 }
-void MecDrive::brakeAll() {
+void Drive::brakeAll() {
     LF.brake();
     LB.brake();
     RF.brake();
     RB.brake();
 }
-void MecDrive::drive(double joyY, double joyX, double rotX, double spd) {
-    if (joyY == 0 && joyX == 0 && rotX == 0) {
+void Drive::arcadeDrive(double joyY, double rotX, double spd) {
+    if (joyY == 0 && rotX == 0) {
         set_hold();
         brakeAll(); return;
     }
-    double ratioCorrection = max(abs(joyY)+abs(joyX)+abs(rotX), 127.0);
+    double ratioCorrection = max(abs(joyY)+abs(rotX), 127.0);
 
-    double LFVel = (joyY+joyX+rotX) / ratioCorrection * spd*127.0;
-    double LBVel = (joyY-joyX+rotX) / ratioCorrection * spd*127.0;
-    double RFVel = (joyY-joyX-rotX) / ratioCorrection * spd*127.0;
-    double RBVel = (joyY+joyX-rotX) / ratioCorrection * spd*127.0;
+    double LFVel = (joyY+rotX) / ratioCorrection * spd*127.0;
+    double LBVel = (joyY+rotX) / ratioCorrection * spd*127.0;
+    double RFVel = (joyY-rotX) / ratioCorrection * spd*127.0;
+    double RBVel = (joyY-rotX) / ratioCorrection * spd*127.0;
 
     LF.move(LFVel);
     LB.move(LBVel);
     RF.move(RFVel);
     RB.move(RBVel);
 }
-void MecDrive::turn(double spd) {
+void Drive::turn(double spd) {
     double vel = spd*200.0;
 
     LF.move_velocity(vel);
@@ -54,8 +54,9 @@ void MecDrive::turn(double spd) {
     RF.move_velocity(-vel);
     RB.move_velocity(-vel);
 }
-void MecDrive::move(double dir, double spd) {
-    double rad = dir*M_PI/180.0;
+void Drive::moveFwd(double spd) {
+    // double rad = dir*M_PI/180.0;
+    double rad;
     double velX = sin(rad), velY = cos(rad);
 
     double normalCorrection = 1.0 / max(abs(velX), abs(velY));
@@ -78,19 +79,19 @@ void MecDrive::move(double dir, double spd) {
     // RB.move(RBVel*127/200);
 }
 
-void tracking_mec(void* ignore) {
-    MecDrive tmp;
+void tracking_drive(void* ignore) {
+    Drive tmp;
     while (1) {
-        if (moveSpd != 0) tmp.move(moveDir, moveSpd);
+        if (moveSpd != 0) tmp.moveFwd(moveSpd);
         else if (turnSpd != 0) tmp.turn(turnSpd);
 
         delay(10);
     }
 }
 
-void mecTurn(double spd) {
+void driveTurn(double spd) {
     turnSpd == spd;
 }
-void mecMove(double dir, double spd) {
-    moveDir = dir; moveSpd = spd;
+void driveMove(double spd) {
+    moveSpd = spd;
 }
