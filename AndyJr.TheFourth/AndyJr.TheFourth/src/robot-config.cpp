@@ -1,12 +1,13 @@
 #include "main.h"
 
 // Motors
-Motor shooter(9, E_MOTOR_GEAR_600, false);
-Motor intakeA(19, E_MOTOR_GEAR_200, true), intakeB(20, E_MOTOR_GEAR_200, false);
-Motor LF(12, E_MOTOR_GEAR_200, true), LB(11, E_MOTOR_GEAR_200, false), RF(13, E_MOTOR_GEAR_200, true), RB(14, E_MOTOR_GEAR_200, false);
+Motor shooter(11, E_MOTOR_GEAR_600, true);
+Motor intakeA(19, E_MOTOR_GEAR_200, true), intakeB(18, E_MOTOR_GEAR_200, false);
+Motor LF(12, E_MOTOR_GEAR_200, true), LB(9, E_MOTOR_GEAR_200, false), RF(13, E_MOTOR_GEAR_200, true), RB(14, E_MOTOR_GEAR_200, false);
+Motor indexer(20, E_MOTOR_GEAR_200, true);
 
 // Triport
-ADIDigitalOut indexer(1, true);
+// ADIDigitalOut indexer(3, true);
 ADIDigitalOut expansion(2, false);
 
 // Other

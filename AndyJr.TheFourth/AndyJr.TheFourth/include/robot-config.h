@@ -5,9 +5,10 @@
 extern Motor shooter;
 extern Motor intakeA, intakeB;
 extern Motor LF, LB, RF, RB;
+extern Motor indexer;
 
 // Triport
-extern ADIDigitalOut indexer;
+// extern ADIDigitalOut indexer;
 extern ADIDigitalOut expansion;
 
 // Other

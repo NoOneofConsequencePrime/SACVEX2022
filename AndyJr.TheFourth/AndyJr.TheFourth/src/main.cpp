@@ -121,27 +121,37 @@ void opcontrol() {
 	const double FAST_RPM = 410, SLOW_RPM = 370;
 	double shooterRPM = SLOW_RPM;
 
+	bool tmpF = 0;
 	while (true) {
-		// Arcade Drive
-		drive.arcadeDrive(Ct1.getJoyLY(), Ct1.getJoyRX(), 1.0);
+		if (Ct1.getA()) tmpF = 1;
+		else if (Ct1.getB()) tmpF = 0;
 
-		// Robot Controls
-		if (Ct1.getL1()) intake(1.0);
-		else if (Ct1.getL2()) intake(-1.0);
-		else intake(0.0);
-
-		if (Ct1.getR2()) index(true);
-		else index(false);
-
-		if (Ct1.getA()) shooterRPM = SLOW_RPM;
-		else if (Ct1.getB()) shooterRPM = FAST_RPM;
-
-		if (Ct1.getR1()) shoot(shooterRPM);
-		else if (Ct1.getUp()) shoot(-100);
+		if (tmpF) shoot(350);
 		else shoot(0);
 
-		if (Ct1.getDown()) expand(true);
-		else if (Ct1.getLeft()) expand(false);
+		if (Ct1.getX()) index(100);
+		else index(0);
+
+		// // Arcade Drive
+		// drive.arcadeDrive(Ct1.getJoyLY(), Ct1.getJoyRX(), 1.0);
+
+		// // Robot Controls
+		// if (Ct1.getL1()) intake(1.0);
+		// else if (Ct1.getL2()) intake(-1.0);
+		// else intake(0.0);
+
+		// if (Ct1.getR2()) index(true);
+		// else index(false);
+
+		// if (Ct1.getA()) shooterRPM = SLOW_RPM;
+		// else if (Ct1.getB()) shooterRPM = FAST_RPM;
+
+		// if (Ct1.getR1()) shoot(shooterRPM);
+		// else if (Ct1.getUp()) shoot(-100);
+		// else shoot(0);
+
+		// if (Ct1.getDown()) expand(true);
+		// else if (Ct1.getLeft()) expand(false);
 
 		delay(10);
 	}
