@@ -37,15 +37,8 @@ void Commisso::spinShooter(double rpm) {
     cumError += error*elapsedTime/1000;
     double rateError = (error-lastError)/elapsedTime;
 
-    // double out = KP*error + KI*cumError + KD*rateError;
-    // error = max(0.0, error);
-    double out = KP*error + KI*cumError;
+    double out = KP*error + KI*cumError + KD*rateError;
     out += rpm*.225 + 10;
-    // double out = KP*error + rpm*.25;
-    // double out = KP*error + input*0.25;
-    // double out = KP*error + rpm/5+BASE_MOTOR_POWER;
-
-    // double out = KP*error + rpm*.225 + 10;
     if (input/rpm < .9) out = 127;
 
     lastError = error;

@@ -3,7 +3,7 @@
 
 class Commisso {
   private:
-    const double KP = 0.35, KI = 3.5, KD = 0, BASE_MOTOR_POWER = 20;
+    const double KP = 0.25, KI = 3.5, KD = 0.1, BASE_MOTOR_POWER = 20;
     // const double KP = 0.21, KI = 0, KD = 0, BASE_MOTOR_POWER = 20;
     unsigned int prevTime, elapsedTime;
     double lastError, cumError;

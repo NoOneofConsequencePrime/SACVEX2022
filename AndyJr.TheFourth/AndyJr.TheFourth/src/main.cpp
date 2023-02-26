@@ -126,11 +126,11 @@ void opcontrol() {
 		if (Ct1.getA()) tmpF = 1;
 		else if (Ct1.getB()) tmpF = 0;
 
-		if (tmpF) shoot(350);
+		if (tmpF) shoot(400);
 		else shoot(0);
 
-		if (Ct1.getX()) index(100);
-		else index(0);
+		// if (Ct1.getX()) index(60);
+		// else index(0);
 
 		// // Arcade Drive
 		// drive.arcadeDrive(Ct1.getJoyLY(), Ct1.getJoyRX(), 1.0);
