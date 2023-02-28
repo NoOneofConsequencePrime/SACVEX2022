@@ -43,9 +43,6 @@ void Auton::pidMove(double dist, double spd) {
     prezi.resetEncoders();
     while (!chkDistRange(dist)) {
         tmpDrive.moveFwd(getPID(prezi.getEncoderDist(), dist, MKP, MKI, MKD));
-        // double tmpPID = getPID(prezi.getDisplacement(), dist, MKP, MKI, MKD);
-        // if (tmpPID > 0) mec.move(dir, min(tmpPID, spd));
-        // else if (tmpPID < 0) mec.move(180, min(tmpPID, spd));
         delay(10);
     }
 

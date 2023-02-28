@@ -129,16 +129,16 @@ void opcontrol() {
 		if (tmpF) shoot(400);
 		else shoot(0);
 
-		// if (Ct1.getX()) index(60);
-		// else index(0);
+		if (Ct1.getX()) index(150);
+		else index(0);
 
 		// // Arcade Drive
 		// drive.arcadeDrive(Ct1.getJoyLY(), Ct1.getJoyRX(), 1.0);
 
 		// // Robot Controls
-		// if (Ct1.getL1()) intake(1.0);
-		// else if (Ct1.getL2()) intake(-1.0);
-		// else intake(0.0);
+		if (Ct1.getL1()) intake(0.8);
+		else if (Ct1.getL2()) intake(-0.8);
+		else intake(0.0);
 
 		// if (Ct1.getR2()) index(true);
 		// else index(false);
