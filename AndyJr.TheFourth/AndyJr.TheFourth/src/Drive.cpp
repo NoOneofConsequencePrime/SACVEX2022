@@ -2,9 +2,6 @@
 #include "robot-config.h"
 #include "Drive.h"
 
-double turnSpd;// -1.0 ~ 1.0
-double moveSpd;// -1.0 ~ 1.0
-
 void Drive::set_coast() {
     LF.set_brake_mode(MOTOR_BRAKE_COAST);
     LB.set_brake_mode(MOTOR_BRAKE_COAST);
@@ -31,7 +28,7 @@ void Drive::brakeAll() {
 }
 void Drive::arcadeDrive(double joyY, double rotX, double spd) {
     if (joyY == 0 && rotX == 0) {
-        set_hold();
+        // set_hold();
         brakeAll(); return;
     }
     double ratioCorrection = max(abs(joyY)+abs(rotX), 127.0);
@@ -47,7 +44,7 @@ void Drive::arcadeDrive(double joyY, double rotX, double spd) {
     RB.move(RBVel);
 }
 void Drive::turn(double spd) {
-    double vel = spd*200.0;
+    double vel = spd*600.0;
 
     LF.move_velocity(vel);
     LB.move_velocity(vel);
@@ -55,43 +52,10 @@ void Drive::turn(double spd) {
     RB.move_velocity(-vel);
 }
 void Drive::moveFwd(double spd) {
-    // double rad = dir*M_PI/180.0;
-    double rad;
-    double velX = sin(rad), velY = cos(rad);
+    double vel = spd*600.0;
 
-    double normalCorrection = 1.0 / max(abs(velX), abs(velY));
-    velX *= normalCorrection; velY *= normalCorrection;
-    double ratioCorrection = max(abs(velX)+abs(velY), 1.0);
-
-    double LFVel = (velY+velX) / ratioCorrection * spd*200.0;
-    double LBVel = (velY-velX) / ratioCorrection * spd*200.0;
-    double RFVel = (velY-velX) / ratioCorrection * spd*200.0;
-    double RBVel = (velY+velX) / ratioCorrection * spd*200.0;
-
-    LF.move_velocity(LFVel);
-    LB.move_velocity(LBVel);
-    RF.move_velocity(RFVel);
-    RB.move_velocity(RBVel);
-    
-    // LF.move(LFVel*127/200);
-    // LB.move(LBVel*127/200);
-    // RF.move(RFVel*127/200);
-    // RB.move(RBVel*127/200);
-}
-
-void tracking_drive(void* ignore) {
-    Drive tmp;
-    while (1) {
-        if (moveSpd != 0) tmp.moveFwd(moveSpd);
-        else if (turnSpd != 0) tmp.turn(turnSpd);
-
-        delay(10);
-    }
-}
-
-void driveTurn(double spd) {
-    turnSpd == spd;
-}
-void driveMove(double spd) {
-    moveSpd = spd;
+    LF.move_velocity(vel);
+    LB.move_velocity(vel);
+    RF.move_velocity(vel);
+    RB.move_velocity(vel);
 }

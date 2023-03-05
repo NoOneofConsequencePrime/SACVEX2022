@@ -9,17 +9,19 @@ double taskIndex;// rpm -200.0 ~ 200.0
 bool taskExpansion;
 
 void Commisso::spinIntake(double spd) {
-    double volt = spd*127;
-    intakeA.move(volt); intakeB.move(volt);
+    double rpm = spd*600;
+    intakeA.move_velocity(rpm); intakeB.move_velocity(rpm);
 }
 // void Commisso::extendIndexer(bool pneuState) {
 //     indexer.set_value(pneuState);
 // }
-void Commisso::spinIndexer(double rpm) {
+void Commisso::spinIndexer(double spd) {
+    double rpm = spd*200;
     indexer.move_velocity(rpm);
 }
 void Commisso::extendExpansion(bool pneuState) {
-    expansion.set_value(pneuState);
+    expA.set_value(pneuState);
+    expB.set_value(pneuState);
 }
 void Commisso::spinShooter(double rpm) {
     if (rpm <= 0) {
@@ -71,8 +73,8 @@ void intake(double spd) {
 // void index(bool pneuState) {
 //     taskIndexer = pneuState;
 // }
-void index(double rpm) {
-    taskIndex = rpm;
+void index(double spd) {
+    taskIndex = spd;
 }
 void expand(bool pneuState) {
     taskExpansion = pneuState;

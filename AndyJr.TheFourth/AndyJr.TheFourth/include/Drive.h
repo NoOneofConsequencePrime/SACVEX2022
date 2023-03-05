@@ -11,8 +11,4 @@ class Drive {
     void moveFwd(double spd);// -1.0 ~ 1.0
 };
 
-void tracking_drive(void* ignore);
-void driveTurn(double spd);
-void driveMove(double spd);
-
 #endif

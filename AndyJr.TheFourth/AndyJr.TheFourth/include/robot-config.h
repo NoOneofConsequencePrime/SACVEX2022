@@ -8,12 +8,13 @@ extern Motor LF, LB, RF, RB;
 extern Motor indexer;
 
 // Triport
-// extern ADIDigitalOut indexer;
-extern ADIDigitalOut expansion;
+extern ADIDigitalOut expA, expB;// expansion
+extern ADIUltrasonic magSense;
 
 // Other
 extern Controller master;
 extern ADIEncoder encoder;
 extern Imu gyro;
+extern Optical optL, optR;
 
 #endif
