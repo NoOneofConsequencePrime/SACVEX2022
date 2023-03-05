@@ -35,7 +35,7 @@ void Commisso::spinShooter(double rpm) {
 
     double input = shooter.get_actual_velocity();
     double error = rpm - input;
-    cumError /= 1.1;
+    cumError /= 1.16;
     cumError += error*elapsedTime/1000;
     double rateError = (error-lastError)/elapsedTime;
 
