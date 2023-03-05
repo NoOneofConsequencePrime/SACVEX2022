@@ -9,7 +9,7 @@
 Sensor prezi;
 Drive tmpDrive;
 
-const int MOVE_TO = 3000;// ms
+const int MOVE_TO = 2400;// ms
 
 double tDist, tTarget, tSpd;
 double turnSpd;// -1.0 ~ 1.0
@@ -59,7 +59,7 @@ void Auton::pidMove(double dist, double spd) {
 
     tmpDrive.set_brake();
     tmpDrive.brakeAll();
-    delay(150);
+    delay(100);
 }
 void Auton::pidTurn(double target, double spd) {
     double baseRot = prezi.getRot(); cumError = 0;
@@ -74,7 +74,7 @@ void Auton::pidTurn(double target, double spd) {
 
     tmpDrive.set_brake();
     tmpDrive.brakeAll();
-    delay(150);
+    delay(100);
 }
 
 bool chkMotor() {

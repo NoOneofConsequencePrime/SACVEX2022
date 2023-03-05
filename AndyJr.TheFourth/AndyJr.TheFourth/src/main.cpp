@@ -8,7 +8,7 @@
 
 // Parameters
 double driveSpd = 1.0;// -1.0 ~ 1.0
-const int ROLLER_TO = 2500;// ms
+const int ROLLER_TO = 2000;// ms
 const int SHOOTER_TO = 4;// cnts
 
 // Init objects
@@ -92,50 +92,65 @@ void rollRedL() {
 
 void emptyMag(double rpm) {
 	shoot(rpm);
-	delay(2000);
+	delay(1900);
 	intake(0.45);
 	int stTime = millis();
 	for (int i = 1; i <= SHOOTER_TO && tmpSensor.getMagDepth() != 0; i++) {
 		index(0.7);
 		delay(400);
 		index(0.0);
-		delay(600);
+		delay(550);
 	}
 	shoot(0); intake(0.0);
 }
 
 void autonSkills() {
-	// drive.moveFwd(0.04);
-	// rollRedR();
-	// drive.moveFwd(0.0);
-	// delay(100);
-	// auton.pidMove(-10, 1.0);
-	// auton.pidTurn(110, 1.0);
-	// intake(1.0);
-	// auton.pidMove(30, 0.5);
-	// intake(0.0);
-	// auton.pidTurn(-24, 1.0);
-	// auton.pidMove(32, 1.0);
-	// drive.moveFwd(0.04);
-	// rollRedR();
-	// drive.moveFwd(0.0);
-	// delay(100);
-	// auton.pidMove(-10, 1.0);
+	// ~ 38 secs
+	drive.moveFwd(0.04);
+	rollRedR();
+	drive.moveFwd(0.0);
+	delay(100);
+	auton.pidMove(-10, 1.0);
+	auton.pidTurn(110, 1.0);
+	intake(1.0);
+	auton.pidMove(30, 0.6);
+	intake(0.0);
+	auton.pidTurn(-24, 1.0);
+	auton.pidMove(32, 1.0);
+	drive.moveFwd(0.04);
+	rollRedR();
+	drive.moveFwd(0.0);
+	delay(100);
+	auton.pidMove(-10, 1.0);
 
-	// auton.pidTurn(-89, 1.0);
-	// auton.pidMove(-100, 1.0);
-	// emptyMag(340);
+	auton.pidTurn(-89, 1.0);
+	auton.pidMove(-100, 1.0);
+	emptyMag(340);
 
-	// auton.pidTurn(-37, 1.0);
-	// auton.pidMove(65, 0.6);
-	// intake(1.0);
-	// auton.pidMove(80, 0.04);
-	// auton.pidMove(-80, 1.0);
-	// intake(0.0);
-	// auton.pidTurn(40, 1.0);
-	// emptyMag(340);
+	auton.pidTurn(-37, 1.0);
+	auton.pidMove(65, 0.6);
+	intake(1.0);
+	auton.pidMove(80, 0.08);// 0.04
+	auton.pidMove(-90, 1.0);
+	intake(0.0);
+	auton.pidTurn(40, 1.0);
+	emptyMag(340);
 
-	
+	// ~ 16 secs
+	auton.pidTurn(-93, 1.0);
+	intake(1.0);
+	auton.pidMove(45, 0.5);
+	auton.pidTurn(-42, 1.0);
+	auton.pidMove(85, 0.45);
+	intake(0.0);
+	auton.pidTurn(92, 1.0);
+	emptyMag(345);
+
+	// ~ 6 secs
+	auton.pidTurn(80, 1.0);// 1.5
+	auton.pidMove(200, 1.0);// 2.5
+	auton.pidTurn(10, 1.0);// 2.0
+	expand(true);
 }
 
 void autonomous() {
