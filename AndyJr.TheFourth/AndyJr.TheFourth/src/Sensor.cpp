@@ -23,8 +23,8 @@ int Sensor::getHueL() {
     setOptLED(0.7);
     double hue = optL.get_hue();
     if (optL.get_proximity() < 250) return -1;
-    if (hue >= 200 && hue <= 280) return 1;
-    else if (hue >= 320 || hue <= 40) return 0;
+    if (hue >= 210 && hue <= 270) return 1;
+    else if (hue >= 330 || hue <= 30) return 0;
     
     return -1;
 }
@@ -32,8 +32,8 @@ int Sensor::getHueR() {
     setOptLED(0.7);
     double hue = optR.get_hue();
     if (optR.get_proximity() < 250) return -1;
-    if (hue >= 200 && hue <= 280) return 1;
-    else if (hue >= 320 || hue <= 40) return 0;
+    if (hue >= 210 && hue <= 270) return 1;
+    else if (hue >= 330 || hue <= 30) return 0;
     
     return -1;
 }
